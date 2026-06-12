@@ -1,0 +1,6 @@
+{
+  "name": "Digital Circus World Engine",
+  "description": "A surreal cyber-simulation of 67M sentient digital characters worshipping the Trinity under a retro CRT God interface, reacting to seasons, sicknesses, and user-commanded virtual disasters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
