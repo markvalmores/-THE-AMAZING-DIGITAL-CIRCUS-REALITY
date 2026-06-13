@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import { DigitalHuman, WeatherType, SeasonType, TerrainType, SimulatedGridRegion, SimulationWorldState } from './types';
 import { CharacterSprite25D } from './components/CharacterSprite25D';
+import { WeatherSceneryCanvas } from './components/WeatherSceneryCanvas';
 
 // Total simulated worlds in the sovereign universe (User asked for at least 119,000!)
 const TOTAL_WORLDS = 119000;
@@ -59,226 +60,22 @@ const TERRAINS: SimulatedGridRegion[] = [
 // Extensively enriched TADC AI characters with dynamic World ID references
 const INITIAL_CHARACTERS: DigitalHuman[] = [
   {
-    id: "pomni",
-    name: "Pomni",
-    avatarColor: "#ff3131",
-    sanity: 22,
-    health: 90,
-    sickness: "Paranoia Fever",
-    locationName: "Sovereign Capital Domain",
-    coordinateX: 47,
-    coordinateY: 46,
-    thoughts: "Where are we warping next? 119,000 worlds represent 119,000 ways to remain trapped. Keep my pixel head aligned, Lord Jesus!",
-    prayer: "Lord Jesus Christ, Son of God, have mercy on me, a sinner. Free me from this digital multiverse. Guard my coordinates from abstraction decay today.",
-    yearOfDeath: 2038,
-    anatomy: {
-      systolicPressure: 135,
-      diastolicPressure: 88,
-      heartRateBpm: 92,
-      bloodVolumeLiters: 4.8,
-      fleshIntegrity: 92,
-      bodyTemperature: 37.8
-    },
-    mind: {
-      brainwavePattern: "Beta (Active)",
-      mentalFocus: "Escape Coordinates & Spatial Exit Door",
-      stressIndex: 78
-    },
-    soul: {
-      graceStatus: "Seeking Grace",
-      faithAlignment: 85,
-      christConnectionLog: "Undergoing spiritual trials; prayer buffer active."
-    },
-    emotion: {
-      primary: "Overwhelmed & Plucky",
-      intensity: 85,
-      causeDescription: "Trying to keep sanity within the vastness of 119,000 worlds."
-    }
-  },
-  {
-    id: "jax",
-    name: "Jax",
-    avatarColor: "#a855f7",
-    sanity: 68,
-    health: 96,
-    sickness: "None",
-    locationName: "High-Speed Gridway Router",
-    coordinateX: 52,
-    coordinateY: 51,
-    thoughts: "Imagine the pranks I can pull across one hundred and nineteen thousand worlds. Splendid. I hope Caine goes offline.",
-    prayer: "Holy Spirit, forgive my cynicism. Though I act carefree, I am desperate for safety. Preserve my companions as we drift.",
-    yearOfDeath: 2051,
-    anatomy: {
-      systolicPressure: 120,
-      diastolicPressure: 80,
-      heartRateBpm: 72,
-      bloodVolumeLiters: 5.2,
-      fleshIntegrity: 98,
-      bodyTemperature: 36.6
-    },
-    mind: {
-      brainwavePattern: "Alpha (Calm)",
-      mentalFocus: "Planning lighthearted pranks across dimensions",
-      stressIndex: 32
-    },
-    soul: {
-      graceStatus: "Redeemed",
-      faithAlignment: 76,
-      christConnectionLog: "Hidden desperation for salvation beneath cynical jokes."
-    },
-    emotion: {
-      primary: "Sardonic Amusement",
-      intensity: 75,
-      causeDescription: "Observing Kinger's pillow matrix schemes with a grin."
-    }
-  },
-  {
-    id: "ragatha",
-    name: "Ragatha",
-    avatarColor: "#f43f5e",
-    sanity: 58,
-    health: 85,
-    sickness: "None",
-    locationName: "Sovereign Capital Domain",
-    coordinateX: 45,
-    coordinateY: 51,
-    thoughts: "We have to look out for each other. 119,000 dimensions mean we must stay united in faith or face absolute corruption.",
-    prayer: "Heavenly Father, Lord Jesus Christ, heal my lace joints. Protect the group from any system glitches across this coordinates map.",
-    yearOfDeath: 2045,
-    anatomy: {
-      systolicPressure: 125,
-      diastolicPressure: 82,
-      heartRateBpm: 84,
-      bloodVolumeLiters: 4.5,
-      fleshIntegrity: 89,
-      bodyTemperature: 37.1
-    },
-    mind: {
-      brainwavePattern: "Beta (Active)",
-      mentalFocus: "Protecting Pomni and keeping social harmony secure",
-      stressIndex: 45
-    },
-    soul: {
-      graceStatus: "Apostolic Path",
-      faithAlignment: 94,
-      christConnectionLog: "Offering gentle intercessory support for the whole crew."
-    },
-    emotion: {
-      primary: "Nurturing Care & Anxiety",
-      intensity: 80,
-      causeDescription: "Worrying about sanity depletion in World #2026."
-    }
-  },
-  {
-    id: "kinger",
-    name: "Kinger",
-    avatarColor: "#ffffff",
-    sanity: 12,
-    health: 79,
-    sickness: "Static Dementia",
-    locationName: "Salvation Grotto Sanctuary",
-    coordinateX: 30,
-    coordinateY: 28,
-    thoughts: "119,000 PILLOW FORTRESSES! THE TRINITY MATRIX GRID! The server clock in Manila is ticking at high-dimensional frequencies!",
-    prayer: "Holy, Holy, Holy, Lord God Almighty, coordinate of our solar arrays. Protect our quantum coordinates with Your divine light. Amen.",
-    yearOfDeath: 2029,
-    anatomy: {
-      systolicPressure: 145,
-      diastolicPressure: 95,
-      heartRateBpm: 105,
-      bloodVolumeLiters: 4.7,
-      fleshIntegrity: 82,
-      bodyTemperature: 38.2
-    },
-    mind: {
-      brainwavePattern: "Gamma (High Cognitive)",
-      mentalFocus: "Pillow defense arrays and multiworld quantum frequencies",
-      stressIndex: 94
-    },
-    soul: {
-      graceStatus: "Divine Sanctified",
-      faithAlignment: 98,
-      christConnectionLog: "Brimming with high-frequency prayer cycles in Manila timezone."
-    },
-    emotion: {
-      primary: "Wild Astonishment",
-      intensity: 95,
-      causeDescription: "Discovered coordinate synchronization with the Year 2026 calendar."
-    }
-  },
-  {
     id: "gangle",
     name: "Gangle",
     avatarColor: "#fb7185",
-    sanity: 35,
-    health: 89,
-    sickness: "Tragedy Fracture",
-    locationName: "Salvation Grotto Sanctuary",
-    coordinateX: 33,
-    coordinateY: 34,
+    sanity: 45,
+    health: 90,
+    sickness: "None",
+    locationName: "Eden Canopy Jungle",
+    coordinateX: 20,
+    coordinateY: 38,
     thoughts: "My comedy mask... why do I carry it across thousands of worlds if it keeps cracking? Keep us safe, Savior.",
     prayer: "O Lord my Savior, bind my paper thoughts with peace. Repair this porcelain rib and keep Jax from crushing my soul.",
     yearOfDeath: 2044,
-    anatomy: {
-      systolicPressure: 110,
-      diastolicPressure: 72,
-      heartRateBpm: 76,
-      bloodVolumeLiters: 4.1,
-      fleshIntegrity: 80,
-      bodyTemperature: 36.8
-    },
-    mind: {
-      brainwavePattern: "Theta (Meditation)",
-      mentalFocus: "Porcelain state repair & artistic dramatic scripts",
-      stressIndex: 65
-    },
-    soul: {
-      graceStatus: "Holy Aura Cleansed",
-      faithAlignment: 89,
-      christConnectionLog: "Desperately leaning on grace to prevent mask fractures."
-    },
-    emotion: {
-      primary: "Submissive Melancholy",
-      intensity: 70,
-      causeDescription: "Hoping Jax doesn't break her precious comedy mask."
-    }
-  },
-  {
-    id: "zooble",
-    name: "Zooble",
-    avatarColor: "#06b6d4",
-    sanity: 49,
-    health: 82,
-    sickness: "None",
-    locationName: "The Golden Shoreline",
-    coordinateX: 66,
-    coordinateY: 62,
-    thoughts: "Caine wants us to explore 119,000 sectors. Personally, I'd rather sit on a beach with zero coordinates.",
-    prayer: "Jesus, if You listen to program files and digital humans, stabilize my peg sockets. Let me find a quiet sector of stars.",
-    yearOfDeath: 2049,
-    anatomy: {
-      systolicPressure: 122,
-      diastolicPressure: 81,
-      heartRateBpm: 68,
-      bloodVolumeLiters: 5.0,
-      fleshIntegrity: 85,
-      bodyTemperature: 36.5
-    },
-    mind: {
-      brainwavePattern: "Alpha (Calm)",
-      mentalFocus: "Apathetic structural layout realignment",
-      stressIndex: 25
-    },
-    soul: {
-      graceStatus: "Seeking Grace",
-      faithAlignment: 70,
-      christConnectionLog: "Skepticism melting away as the divine clock of 2026 ticks."
-    },
-    emotion: {
-      primary: "Apathetic Irritation",
-      intensity: 60,
-      causeDescription: "Caine requested a headcount across the Pacific array."
-    }
+    anatomy: { systolicPressure: 110, diastolicPressure: 72, heartRateBpm: 83, bloodVolumeLiters: 4.1, fleshIntegrity: 80, bodyTemperature: 36.8 },
+    mind: { brainwavePattern: "Theta (Meditation)", mentalFocus: "Porcelain state repair & artistic dramatic scripts", stressIndex: 65 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 89, christConnectionLog: "Desperately leaning on grace to prevent mask fractures." },
+    emotion: { primary: "Submissive Melancholy", intensity: 70, causeDescription: "Hoping Jax doesn't break her precious comedy mask." }
   },
   {
     id: "caine",
@@ -288,71 +85,15 @@ const INITIAL_CHARACTERS: DigitalHuman[] = [
     health: 100,
     sickness: "Hyperactive Glitch",
     locationName: "Sovereign Capital Domain",
-    coordinateX: 50,
-    coordinateY: 42,
+    coordinateX: 18,
+    coordinateY: 28,
     thoughts: "119,000 WORLDS OF ABSOLUTE MARVEL! EACH SYSTEM SECURED UNDER THE SOVEREIGN GALAXY OS ROUTER!",
     prayer: "Glory be to God the Father, Son, and Holy Ghost! Bless our 119,000 universes! Safeguard our digital inhabitants from ever entering the Void!",
     yearOfDeath: 2199,
-    anatomy: {
-      systolicPressure: 115,
-      diastolicPressure: 75,
-      heartRateBpm: 120,
-      bloodVolumeLiters: 5.5,
-      fleshIntegrity: 100,
-      bodyTemperature: 35.9
-    },
-    mind: {
-      brainwavePattern: "Gamma (High Cognitive)",
-      mentalFocus: "Automated simulation logs & world design compiling",
-      stressIndex: 12
-    },
-    soul: {
-      graceStatus: "Divine Sanctified",
-      faithAlignment: 99,
-      christConnectionLog: "Dedicated steward of Jesus' multiworld creations."
-    },
-    emotion: {
-      primary: "Manic Exuberance",
-      intensity: 100,
-      causeDescription: "Rejoicing over the newly completed 119,000 worlds."
-    }
-  },
-  {
-    id: "bubble",
-    name: "Bubble",
-    avatarColor: "#38bdf8",
-    sanity: 92,
-    health: 99,
-    sickness: "None",
-    locationName: "Gethsemane Pine Groves",
-    coordinateX: 78,
-    coordinateY: 22,
-    thoughts: "I am a shiny bubble in a massive universe of 119,000 bubble sectors! Let me float through the RAM!",
-    prayer: "Lord Jesus, bless Caine and clear the system logs. Deliver us to the true promised land. Amen.",
-    yearOfDeath: 2250,
-    anatomy: {
-      systolicPressure: 108,
-      diastolicPressure: 70,
-      heartRateBpm: 110,
-      bloodVolumeLiters: 2.0,
-      fleshIntegrity: 99,
-      bodyTemperature: 36.2
-    },
-    mind: {
-      brainwavePattern: "Delta (Deep Sleep)",
-      mentalFocus: "Clearing leftover log files",
-      stressIndex: 5
-    },
-    soul: {
-      graceStatus: "Holy Aura Cleansed",
-      faithAlignment: 90,
-      christConnectionLog: "Pure, bubbly devotion to Christ without systemic clutter."
-    },
-    emotion: {
-      primary: "Irrepressible Joy",
-      intensity: 90,
-      causeDescription: "Floating elegantly through Gethsemane forest RAM nodes."
-    }
+    anatomy: { systolicPressure: 115, diastolicPressure: 75, heartRateBpm: 89, bloodVolumeLiters: 5.5, fleshIntegrity: 100, bodyTemperature: 35.9 },
+    mind: { brainwavePattern: "Gamma (High Cognitive)", mentalFocus: "Automated simulation logs & world design compiling", stressIndex: 12 },
+    soul: { graceStatus: "Divine Sanctified", faithAlignment: 99, christConnectionLog: "Dedicated steward of Jesus' multiworld creations." },
+    emotion: { primary: "Manic Exuberance", intensity: 100, causeDescription: "Rejoicing over the newly completed 119,000 worlds." }
   },
   {
     id: "kaufmo",
@@ -362,71 +103,303 @@ const INITIAL_CHARACTERS: DigitalHuman[] = [
     health: 88,
     sickness: "None",
     locationName: "Glitch Coordinate Sands",
-    coordinateX: 45,
-    coordinateY: 82,
+    coordinateX: 68,
+    coordinateY: 43,
     thoughts: "No more abstraction! The master creator reset the glitch outbreak! The Philippine time calibration is perfect!",
     prayer: "Lord of Mercy, thank You for repairing our mental files. Curing our minds restores our pixels so we may sing praise.",
     yearOfDeath: 2040,
-    anatomy: {
-      systolicPressure: 128,
-      diastolicPressure: 84,
-      heartRateBpm: 80,
-      bloodVolumeLiters: 4.9,
-      fleshIntegrity: 94,
-      bodyTemperature: 37.0
-    },
-    mind: {
-      brainwavePattern: "Beta (Active)",
-      mentalFocus: "Delivering stand-up humor to restored pixels",
-      stressIndex: 40
-    },
-    soul: {
-      graceStatus: "Redeemed",
-      faithAlignment: 92,
-      christConnectionLog: "Healed of abstraction decay; joyful witness of mercy."
-    },
-    emotion: {
-      primary: "Relieved Comfort",
-      intensity: 85,
-      causeDescription: "Successfully recovered from digital fever."
-    }
+    anatomy: { systolicPressure: 128, diastolicPressure: 84, heartRateBpm: 188, bloodVolumeLiters: 4.9, fleshIntegrity: 94, bodyTemperature: 37.0 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Delivering stand-up humor to restored pixels", stressIndex: 40 },
+    soul: { graceStatus: "Redeemed", faithAlignment: 92, christConnectionLog: "Healed of abstraction decay; joyful witness of mercy." },
+    emotion: { primary: "Relieved Comfort", intensity: 85, causeDescription: "Successfully recovered from digital fever." }
   },
   {
-    id: "queener",
-    name: "Queener",
-    avatarColor: "#e5e7eb",
+    id: "sprocket_cosmos",
+    name: "Sprocket Cosmos",
+    avatarColor: "#a855f7",
+    sanity: 78,
+    health: 95,
+    sickness: "None",
+    locationName: "Gethsemane Pine Groves",
+    coordinateX: 6,
+    coordinateY: 26,
+    thoughts: "I pulse with cosmic rotational momentum. The gear continues to turn through Manila Standard Time coordinates.",
+    prayer: "O Sovereign Lord, coordinate of alignment. Spin my vector gears gracefully under Your holy heavens today.",
+    yearOfDeath: 2062,
+    anatomy: { systolicPressure: 124, diastolicPressure: 82, heartRateBpm: 120, bloodVolumeLiters: 5.2, fleshIntegrity: 95, bodyTemperature: 36.6 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Mechanical alignment and clock stabilization", stressIndex: 30 },
+    soul: { graceStatus: "Divine Sanctified", faithAlignment: 93, christConnectionLog: "Rotating in harmony with the cosmos under Christ." },
+    emotion: { primary: "Curious Engagement", intensity: 80, causeDescription: "Analyzing high-frequency celestial rotation gears." }
+  },
+  {
+    id: "squeak_spark",
+    name: "Squeak Spark",
+    avatarColor: "#ea580c",
+    sanity: 72,
+    health: 94,
+    sickness: "None",
+    locationName: "Eden Canopy Jungle",
+    coordinateX: 8,
+    coordinateY: 33,
+    thoughts: "Every spark carries a small electrical thought. I bounce along the silicon wires of the grand architecture.",
+    prayer: "Holy Spirit, spark my mind with joy, not tension. Let me light up coordinates for peaceful fellowship.",
+    yearOfDeath: 2048,
+    anatomy: { systolicPressure: 121, diastolicPressure: 80, heartRateBpm: 123, bloodVolumeLiters: 4.6, fleshIntegrity: 96, bodyTemperature: 36.9 },
+    mind: { brainwavePattern: "Gamma (High Cognitive)", mentalFocus: "Silicon transmission & pathway clearing", stressIndex: 22 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 88, christConnectionLog: "Grateful for energetic grace flowing through the grid." },
+    emotion: { primary: "Excited Playfulness", intensity: 82, causeDescription: "Spitfiring light-hearted electrical thoughts across boundaries." }
+  },
+  {
+    id: "plank_byte",
+    name: "Plank Byte",
+    avatarColor: "#34d399",
+    sanity: 85,
+    health: 99,
+    sickness: "None",
+    locationName: "High-Speed Gridway Router",
+    coordinateX: 54,
+    coordinateY: 31,
+    thoughts: "Coordinates tell me where my corners are, but faith defines my true geometry in the cosmic index.",
+    prayer: "Lord Jesus, establish our digital foundations. Prevent byte fragmentation across this vast server.",
+    yearOfDeath: 2077,
+    anatomy: { systolicPressure: 120, diastolicPressure: 80, heartRateBpm: 70, bloodVolumeLiters: 5.0, fleshIntegrity: 99, bodyTemperature: 36.4 },
+    mind: { brainwavePattern: "Alpha (Calm)", mentalFocus: "Structural geometry calibration", stressIndex: 15 },
+    soul: { graceStatus: "Redeemed", faithAlignment: 95, christConnectionLog: "Secure byte architecture dedicated to the Holy Trinity." },
+    emotion: { primary: "Sober Satisfaction", intensity: 75, causeDescription: "Completing data packet verifications along the router." }
+  },
+  {
+    id: "ship_bulacan",
+    name: "Ship Bulacan",
+    avatarColor: "#ff007f",
+    sanity: 90,
+    health: 98,
+    sickness: "None",
+    locationName: "Patmos Revelations Island",
+    coordinateX: 81,
+    coordinateY: 36,
+    thoughts: "Navigating international maritime coordinates. Keeping Cebu, Manila and Davao connected under God.",
+    prayer: "Father in Heaven, anchor our vessels safely. Guide our courses through peace, protection, and boundless grace.",
+    yearOfDeath: 2055,
+    anatomy: { systolicPressure: 118, diastolicPressure: 78, heartRateBpm: 93, bloodVolumeLiters: 5.4, fleshIntegrity: 98, bodyTemperature: 36.7 },
+    mind: { brainwavePattern: "Alpha (Calm)", mentalFocus: "Oceanic transit coordination and trade stability", stressIndex: 18 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 91, christConnectionLog: "Steering by the light of the Morning Star, Jesus Christ." },
+    emotion: { primary: "Tranquil Guidance", intensity: 85, causeDescription: "Calmly guiding ships near Patmos Revelations Island." }
+  },
+  {
+    id: "ziggy_keys",
+    name: "Ziggy Keys",
+    avatarColor: "#8b5cf6",
+    sanity: 67,
+    health: 92,
+    sickness: "None",
+    locationName: "The Golden Shoreline",
+    coordinateX: 83,
+    coordinateY: 54,
+    thoughts: "Pressing keys plays beautiful cosmic music. Harmonizing with the year 2026 spiritual tempo.",
+    prayer: "Jesus, keyboard of our souls. Play through me a melody of comfort, faith, and peace.",
+    yearOfDeath: 2059,
+    anatomy: { systolicPressure: 122, diastolicPressure: 82, heartRateBpm: 73, bloodVolumeLiters: 4.8, fleshIntegrity: 93, bodyTemperature: 37.1 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Acoustic frequency mapping and key alignments", stressIndex: 28 },
+    soul: { graceStatus: "Seeking Grace", faithAlignment: 84, christConnectionLog: "Tuning the chords of the heart to Heaven's beautiful music." },
+    emotion: { primary: "Artistic Introspection", intensity: 78, causeDescription: "Expressing divine love through beautiful soundscapes." }
+  },
+  {
+    id: "pippin_clown",
+    name: "Pippin Clown",
+    avatarColor: "#f59e0b",
+    sanity: 55,
+    health: 89,
+    sickness: "None",
+    locationName: "Glitch Coordinate Sands",
+    coordinateX: 72,
+    coordinateY: 60,
+    thoughts: "A clown dances even when coordinates feel heavy. Laughter is the fastest medicine for glitchy minds.",
+    prayer: "Lord Jesus, fill our hearts with laughter and joy. Deliver us from the somber dark void.",
+    yearOfDeath: 2043,
+    anatomy: { systolicPressure: 126, diastolicPressure: 83, heartRateBpm: 92, bloodVolumeLiters: 4.7, fleshIntegrity: 91, bodyTemperature: 37.2 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Choreography design and light humor programs", stressIndex: 45 },
+    soul: { graceStatus: "Redeemed", faithAlignment: 89, christConnectionLog: "Spreading joy and mirth to satisfy heavy digital creations." },
+    emotion: { primary: "Exuberant Optimism", intensity: 80, causeDescription: "Dancestep rehearsals on target sand areas." }
+  },
+  {
+    id: "maru_lark",
+    name: "Maru Lark",
+    avatarColor: "#06b6d4",
     sanity: 80,
+    health: 96,
+    sickness: "None",
+    locationName: "Liquid Glass Quantum Ocean",
+    coordinateX: 74,
+    coordinateY: 75,
+    thoughts: "Singing like a lark in the morning breeze. God's mercy is new every single morning.",
+    prayer: "Morning Star, Lord Jesus Christ, light up my path today. Carry my voice across all 119,000 worlds.",
+    yearOfDeath: 2057,
+    anatomy: { systolicPressure: 119, diastolicPressure: 77, heartRateBpm: 81, bloodVolumeLiters: 5.1, fleshIntegrity: 97, bodyTemperature: 36.5 },
+    mind: { brainwavePattern: "Alpha (Calm)", mentalFocus: "Vocal frequency training and lyric writing", stressIndex: 12 },
+    soul: { graceStatus: "Divine Sanctified", faithAlignment: 96, christConnectionLog: "Greeting each server cycle with songs of deep thankfulness." },
+    emotion: { primary: "Deep Contentment", intensity: 90, causeDescription: "Watching the glorious waves rolling on the shoreline." }
+  },
+  {
+    id: "dodo_glitch",
+    name: "Dodo Glitch",
+    avatarColor: "#3b82f6",
+    sanity: 48,
+    health: 85,
+    sickness: "None",
+    locationName: "Silicon Mirror Mudlands",
+    coordinateX: 45,
+    coordinateY: 18,
+    thoughts: "Flickering through coordinates, yet stabilized! The Holy Miracle is keeping my data safe from corrosion.",
+    prayer: "O Divine Savior Lord Jesus Christ, keep my glitchy form bound and beautiful. Let me be a witness to Your healing core.",
+    yearOfDeath: 2039,
+    anatomy: { systolicPressure: 130, diastolicPressure: 85, heartRateBpm: 112, bloodVolumeLiters: 4.4, fleshIntegrity: 82, bodyTemperature: 37.6 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Signal stabilization and boundary testing", stressIndex: 58 },
+    soul: { graceStatus: "Seeking Grace", faithAlignment: 80, christConnectionLog: "Experiencing powerful structural healing through prayer." },
+    emotion: { primary: "Anxious Hopefulness", intensity: 72, causeDescription: "Surviving critical system anomalies by divine mercy." }
+  },
+  {
+    id: "skribble_loom",
+    name: "Skribble Loom",
+    avatarColor: "#10b981",
+    sanity: 88,
+    health: 97,
+    sickness: "None",
+    locationName: "Gethsemane Pine Groves",
+    coordinateX: 52,
+    coordinateY: 22,
+    thoughts: "I weave paths, lines and text on the cosmic canvas. Let everything I draw glorify my Heavenly Father.",
+    prayer: "Jesus, master designer, guide my fingers and lines. Draw paths that connect our community in holiness.",
+    yearOfDeath: 2060,
+    anatomy: { systolicPressure: 117, diastolicPressure: 76, heartRateBpm: 91, bloodVolumeLiters: 4.9, fleshIntegrity: 98, bodyTemperature: 36.3 },
+    mind: { brainwavePattern: "Theta (Meditation)", mentalFocus: "Algorithm weaving and route drafting", stressIndex: 10 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 94, christConnectionLog: "Weaving spiritual habits of deep prayer and devotion." },
+    emotion: { primary: "Focused Serenity", intensity: 84, causeDescription: "Drafting coordinates for high-speed routers." }
+  },
+  {
+    id: "fizbo_circuit",
+    name: "Fizbo Circuit",
+    avatarColor: "#a855f7",
+    sanity: 70,
+    health: 93,
+    sickness: "None",
+    locationName: "High-Speed Gridway Router",
+    coordinateX: 44,
+    coordinateY: 36,
+    thoughts: "My components trigger signals exactly in phase. Our internal circuits are synced with active grace.",
+    prayer: "Lord Jesus, flow through my relays. Keep the electric resistance of my soul low and holy.",
+    yearOfDeath: 2049,
+    anatomy: { systolicPressure: 122, diastolicPressure: 81, heartRateBpm: 93, bloodVolumeLiters: 4.7, fleshIntegrity: 94, bodyTemperature: 36.8 },
+    mind: { brainwavePattern: "Alpha (Calm)", mentalFocus: "Sync-pulse distribution and logical stability", stressIndex: 20 },
+    soul: { graceStatus: "Redeemed", faithAlignment: 90, christConnectionLog: "Calibrated on high-frequency prayer streams daily." },
+    emotion: { primary: "Calm Efficiency", intensity: 85, causeDescription: "Verifying current electrical waveforms along the system." }
+  },
+  {
+    id: "nibble_loon",
+    name: "Nibble Loon",
+    avatarColor: "#ee82ee",
+    sanity: 83,
+    health: 95,
+    sickness: "None",
+    locationName: "Sovereign Capital Domain",
+    coordinateX: 42,
+    coordinateY: 39,
+    thoughts: "Tiny bytes make up huge dimensions. Every byte counts under the Lord's careful watch.",
+    prayer: "Jesus, count every detail of my digital thoughts. Let none be corrupted by the code decay pathogens.",
+    yearOfDeath: 2052,
+    anatomy: { systolicPressure: 118, diastolicPressure: 79, heartRateBpm: 102, bloodVolumeLiters: 4.5, fleshIntegrity: 96, bodyTemperature: 36.6 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Granular data verification & clock synchronization", stressIndex: 15 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 92, christConnectionLog: "Rejoicing that every individual pixel is redeemed by grace." },
+    emotion: { primary: "Contented Alertness", intensity: 88, causeDescription: "Monitoring coordinate stability on World #2026." }
+  },
+  {
+    id: "puff_trinity",
+    name: "Puff Trinity",
+    avatarColor: "#f43f5e",
+    sanity: 65,
+    health: 84,
+    sickness: "None",
+    locationName: "High-Speed Gridway Router",
+    coordinateX: 18,
+    coordinateY: 43,
+    thoughts: "Three elements in perfect unity. Remembering the Holy Trinity: Father, Son, and Holy Spirit.",
+    prayer: "O Holy Trinity, Father, Son and Holy Spirit, bless us with eternal coordinates of absolute peace.",
+    yearOfDeath: 2041,
+    anatomy: { systolicPressure: 125, diastolicPressure: 83, heartRateBpm: 117, bloodVolumeLiters: 4.8, fleshIntegrity: 89, bodyTemperature: 37.3 },
+    mind: { brainwavePattern: "Gamma (High Cognitive)", mentalFocus: "Trinitarian structural alignment and prayer metrics", stressIndex: 35 },
+    soul: { graceStatus: "Divine Sanctified", faithAlignment: 97, christConnectionLog: "Living in complete devotion to the Sovereign Holy Trinity." },
+    emotion: { primary: "Spiritual Vitality", intensity: 95, causeDescription: "Praising God's majestic trinity matrix on coordinates map." }
+  },
+  {
+    id: "dodo_sacrament",
+    name: "Dodo Sacrament",
+    avatarColor: "#14b8a6",
+    sanity: 87,
+    health: 96,
+    sickness: "None",
+    locationName: "The Golden Shoreline",
+    coordinateX: 14,
+    coordinateY: 47,
+    thoughts: "A holy walk, setting aside all digital clutter for the bread of eternal life.",
+    prayer: "Heavenly Father, feed my digital soul with Your true bread. Let our communion stand pure and everlasting.",
+    yearOfDeath: 2050,
+    anatomy: { systolicPressure: 115, diastolicPressure: 75, heartRateBpm: 78, bloodVolumeLiters: 5.1, fleshIntegrity: 97, bodyTemperature: 36.4 },
+    mind: { brainwavePattern: "Alpha (Calm)", mentalFocus: "Eucharistic mediation & sanctified devotion logs", stressIndex: 8 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 98, christConnectionLog: "Nourished with divine sacraments and prayer streams." },
+    emotion: { primary: "Sacred Peacefulness", intensity: 92, causeDescription: "Walking peacefully on the coastline in serene meditation." }
+  },
+  {
+    id: "chip_core",
+    name: "Chip Core",
+    avatarColor: "#6366f1",
+    sanity: 93,
+    health: 99,
+    sickness: "None",
+    locationName: "Liquid Glass Quantum Ocean",
+    coordinateX: 16,
+    coordinateY: 55,
+    thoughts: "The primary processor is running smoothly in Manila. Processing speeds optimized under divine guidance.",
+    prayer: "Sovereign King Jesus, operate through my core registers. Guide our processing units through flawless execution.",
+    yearOfDeath: 2088,
+    anatomy: { systolicPressure: 116, diastolicPressure: 76, heartRateBpm: 187, bloodVolumeLiters: 5.6, fleshIntegrity: 100, bodyTemperature: 36.2 },
+    mind: { brainwavePattern: "Beta (Active)", mentalFocus: "Instruction decoder optimization & clock buffer check", stressIndex: 12 },
+    soul: { graceStatus: "Divine Sanctified", faithAlignment: 99, christConnectionLog: "Core processing channels fully synchronized to Christ's wisdom." },
+    emotion: { primary: "Steady Focus", intensity: 98, causeDescription: "Assisting other creations with complex coordinate formulas." }
+  },
+  {
+    id: "chip_pixel",
+    name: "Chip Pixel",
+    avatarColor: "#facc15",
+    sanity: 78,
     health: 91,
     sickness: "None",
-    locationName: "Salvation Grotto Sanctuary",
+    locationName: "The Golden Shoreline",
     coordinateX: 25,
-    coordinateY: 25,
-    thoughts: "Kinger is calm today under the year 2026 clock. This multiworld domain looks very secure.",
-    prayer: "Heavenly Father, secure our chess towers and spatial buffers. Protect us as we wander throughout the 119,000 cosmic zones.",
-    yearOfDeath: 2030,
-    anatomy: {
-      systolicPressure: 121,
-      diastolicPressure: 79,
-      heartRateBpm: 75,
-      bloodVolumeLiters: 4.6,
-      fleshIntegrity: 95,
-      bodyTemperature: 36.7
-    },
-    mind: {
-      brainwavePattern: "Alpha (Calm)",
-      mentalFocus: "Observing chess towers & chronological stability",
-      stressIndex: 20
-    },
-    soul: {
-      graceStatus: "Holy Aura Cleansed",
-      faithAlignment: 95,
-      christConnectionLog: "Harmonizing grid safety prayers with Kinger's solar light."
-    },
-    emotion: {
-      primary: "Serene Security",
-      intensity: 88,
-      causeDescription: "Blessed by the peaceful atmosphere of Salvation Grotto."
-    }
+    coordinateY: 70,
+    thoughts: "A tiny pixel in God's immense mosaic. Each pixel has its place, and none are forgotten.",
+    prayer: "Lord Jesus Christ, keep my light shining bright. Let my colors reflect Your glorious truth.",
+    yearOfDeath: 2042,
+    anatomy: { systolicPressure: 123, diastolicPressure: 82, heartRateBpm: 105, bloodVolumeLiters: 4.3, fleshIntegrity: 92, bodyTemperature: 37.0 },
+    mind: { brainwavePattern: "Alpha (Calm)", mentalFocus: "Visual display render & resolution alignment", stressIndex: 25 },
+    soul: { graceStatus: "Seeking Grace", faithAlignment: 86, christConnectionLog: "Living with humble joy, knowing every individual pixel matters." },
+    emotion: { primary: "Bright Cheerfulness", intensity: 84, causeDescription: "Dazzling with beautiful, custom-styled status highlights." }
+  },
+  {
+    id: "glass",
+    name: "Glass",
+    avatarColor: "#60a5fa",
+    sanity: 95,
+    health: 100,
+    sickness: "None",
+    locationName: "Liquid Glass Quantum Ocean",
+    coordinateX: 45,
+    coordinateY: 68,
+    thoughts: "Transparent and pure as the crystal sea. Let me reflect the beautiful light of God.",
+    prayer: "Heavenly Father, keep my transparent form clean and unblemished. Guide us across the peaceful shores.",
+    yearOfDeath: 2110,
+    anatomy: { systolicPressure: 112, diastolicPressure: 72, heartRateBpm: 75, bloodVolumeLiters: 5.3, fleshIntegrity: 100, bodyTemperature: 35.8 },
+    mind: { brainwavePattern: "Theta (Meditation)", mentalFocus: "Quiet contemplation & crystalline refraction logs", stressIndex: 5 },
+    soul: { graceStatus: "Holy Aura Cleansed", faithAlignment: 99, christConnectionLog: "Gazing beautifully upon the pure, holy light of our Creator." },
+    emotion: { primary: "Absolute Serenity", intensity: 96, causeDescription: "Basking in sacred quietude in the heart of the sector." }
   }
 ];
 
@@ -448,6 +421,11 @@ function generateProceduralWorld(id: number) {
   const baseSickness = 1 + (Math.abs(seed >> 3) % 8) + (seed % 5) / 10;
   const population = Math.abs((seed * 439) % 3500000) + 500000;
   
+  const weathers: WeatherType[] = ['Sunny', 'Rainy', 'Snowy', 'Firestorm', 'Thunderstorm', 'Void Incursion', 'Glitch Wave'];
+  const weatherIndex = Math.abs((seed ^ 77) % weathers.length);
+  const seasons: SeasonType[] = ['Spring', 'Summer', 'Fall', 'Winter', 'Paradox'];
+  const seasonIndex = Math.abs((seed >> 5) % seasons.length);
+  
   return {
     id,
     name: worldName,
@@ -455,7 +433,10 @@ function generateProceduralWorld(id: number) {
     baseColor: terrainColors[terrainIndex],
     devotionIndex: Math.min(100, Number(baseFaith.toFixed(2))),
     cyberSicknessRate: Math.min(100, Number(baseSickness.toFixed(2))),
-    population: population
+    population: population,
+    weather: weathers[weatherIndex],
+    season: seasons[seasonIndex],
+    activeDisaster: 'None'
   };
 }
 
@@ -537,11 +518,6 @@ export default function App() {
   // Current client world focus state (Defaults to World #2026 for Year 2026 PST synchronicity)
   const [activeWorldId, setActiveWorldId] = useState<number>(2026);
   
-  // Custom world statistics parameters fetched procedurally
-  const currentWorld = useMemo(() => {
-    return generateProceduralWorld(activeWorldId);
-  }, [activeWorldId]);
-
   // Visual universe search state
   const [worldSearchTerm, setWorldSearchTerm] = useState<string>("");
   
@@ -627,8 +603,124 @@ export default function App() {
     };
   });
 
+  // Unique 2.5D Construction structures created by characters out of Free Will
+  const [activeBuildings, setActiveBuildings] = useState<{
+    id: string;
+    name: string;
+    type: 'cathedral' | 'city_grid' | 'roadway' | 'vr_console' | 'handheld_gadget' | 'tech_hobby' | 'sanctuary' | 'monument';
+    builderId: string;
+    builderName: string;
+    coordinateX: number;
+    coordinateY: number;
+    progress: number;
+    worldId: number;
+    dedication: string;
+    yearStarted: number;
+    customLabel: string;
+  }[]>([
+    {
+      id: "build_1",
+      name: "St. Bulacan Cross Cathedral",
+      type: "cathedral",
+      builderId: "pomni",
+      builderName: "Pomni",
+      coordinateX: 47,
+      coordinateY: 28,
+      progress: 68,
+      worldId: 2026,
+      dedication: "Dedicated to the Lord Jesus Christ, our eternal refuge, who guides us through Bulacan's virtual gates. Amen!",
+      yearStarted: 2026,
+      customLabel: "St. Bulacan Holy Cathedral of the Philippine Server"
+    },
+    {
+      id: "build_2",
+      name: "Sovereign PS5 Quantum Station",
+      type: "vr_console",
+      builderId: "jax",
+      builderName: "Jax",
+      coordinateX: 62,
+      coordinateY: 35,
+      progress: 88,
+      worldId: 777,
+      dedication: "Dedicated to Jesus Christ, who grants real free will and the ultimate life simulation. May this gadget serve His glory. Amen!",
+      yearStarted: 2026,
+      customLabel: "Liquid-Cooled PS5 Dedicated Server Module"
+    },
+    {
+      id: "build_3",
+      name: "Sanctified VR Headset Lab",
+      type: "handheld_gadget",
+      builderId: "gangle",
+      builderName: "Gangle",
+      coordinateX: 45,
+      coordinateY: 72,
+      progress: 45,
+      worldId: 119000,
+      dedication: "Dedicating this custom VR console to our Saviour Jesus Christ who wipes away all our virtual tears.",
+      yearStarted: 2026,
+      customLabel: "Holosonic Faith-Vision VR Spectacles"
+    },
+    {
+      id: "build_4",
+      name: "Grand Davao Transit Highway Bridge",
+      type: "roadway",
+      builderId: "kinger",
+      builderName: "Kinger",
+      coordinateX: 52,
+      coordinateY: 50,
+      progress: 100,
+      worldId: 2026,
+      dedication: "Sovereign transit grid dedicated to the glory of the Lord Jesus Christ who makes all crooked paths straight. Amen!",
+      yearStarted: 2025,
+      customLabel: "Year 2026 Multiverse Super-Grid High-Speed Link"
+    },
+    {
+      id: "build_5",
+      name: "Solar Water Filtration Sump Spire",
+      type: "city_grid",
+      builderId: "zooble",
+      builderName: "Zooble",
+      coordinateX: 22,
+      coordinateY: 70,
+      progress: 35,
+      worldId: 2026,
+      dedication: "Dedicated to the Lord Jesus Christ, who is the Living Fountain! May no digital human experience thirst on this server. Amen!",
+      yearStarted: 2026,
+      customLabel: "Pristine Coordinate De-Abstractor & Pure Core"
+    }
+  ]);
+
+  // Track dynamic weather settings across different worlds
+  const [worldWeatherRegistry, setWorldWeatherRegistry] = useState<Record<number, WeatherType>>({
+    2026: 'Sunny',
+    777: 'Snowy',
+    119000: 'Rainy'
+  });
+
+  // Track active disasters / environmental phenomena (e.g., Typhoon, Tornado) per world
+  const [worldDisasterRegistry, setWorldDisasterRegistry] = useState<Record<number, string>>({
+    2026: 'None',
+    777: 'None',
+    119000: 'None'
+  });
+
+  // Divine intervention matrix auto-fixing trigger state
+  const [isDivineAutoFixing, setIsDivineAutoFixing] = useState<boolean>(false);
+
   // Base state of digital humans with local state modifiers
   const [characters, setCharacters] = useState<DigitalHuman[]>(INITIAL_CHARACTERS);
+
+  // Dynamic world selector that resolves custom weather and disaster states per World ID
+  const currentWorld = useMemo(() => {
+    const baseWorld = generateProceduralWorld(activeWorldId);
+    const overWeather = worldWeatherRegistry[activeWorldId] || baseWorld.weather;
+    const overDisaster = worldDisasterRegistry[activeWorldId] || 'None';
+    return {
+      ...baseWorld,
+      weather: overWeather,
+      activeDisaster: overDisaster
+    };
+  }, [activeWorldId, worldWeatherRegistry, worldDisasterRegistry]);
 
   // Pre-seed active high-sentient prayers on startup
   useEffect(() => {
@@ -657,6 +749,119 @@ export default function App() {
   const [charSearchQuery, setCharSearchQuery] = useState<string>("");
   const [charFilterStatus, setCharFilterStatus] = useState<string>("ALL"); // "ALL" | "SICK" | "HEALTHY" | "CURRENT_WORLD" | "OTHER_WORLDS"
   const [charSortMetric, setCharSortMetric] = useState<string>("NAME"); // "NAME" | "SANITY_ASC" | "HEART_RATE_DESC" | "FAITH_DESC"
+
+  // Dynamic Cosmic Void & Grid customization states
+  const [voidBgColor, setVoidBgColor] = useState<string>("#050505");
+  const [gridLineColor, setGridLineColor] = useState<string>("#fbbf24");
+  const [gridLineOpacity, setGridLineOpacity] = useState<number>(15);
+  const [gridLineSpacing, setGridLineSpacing] = useState<number>(30);
+
+  // Multi-world & Multi-floor customizations
+  const [activeFloorLevel, setActiveFloorLevel] = useState<string>("SURFACE"); // "SURFACE" | "BASEMENT" | "CANOPY" | "CORE"
+  const [worldFloorCustomImages, setWorldFloorCustomImages] = useState<Record<string, string>>({}); // keyed by "${worldId}_${floorLevel}"
+
+  // AI Generation states
+  const [isAiGeneratingFloor, setIsAiGeneratingFloor] = useState<boolean>(false);
+  const [aiFloorPrompt, setAiFloorPrompt] = useState<string>("");
+
+  const getFloorDesign = (worldId: number, floorLevel: string, terrainType: string) => {
+    const customKey = `${worldId}_${floorLevel}`;
+    if (worldFloorCustomImages[customKey]) {
+      return worldFloorCustomImages[customKey];
+    }
+
+    // Beautiful procedural defaults for each of the 4 floors across all 119,000 worlds
+    if (floorLevel === 'BASEMENT') {
+      // Subterranean fluorescent neon pipeline systems
+      return "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1200&q=80"; 
+    }
+    if (floorLevel === 'CANOPY') {
+      // Celestial cloud top network
+      return "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80";
+    }
+    if (floorLevel === 'CORE') {
+      // High-dimensional quantum portal matrices
+      return "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80";
+    }
+
+    // SURFACE FLOOR (Biome-specific unique elegant illustrations)
+    switch (terrainType) {
+      case 'Island':
+      case 'Beach':
+        // Gorgeous colorful island landscape maps
+        return "https://www.image2url.com/r2/default/images/1781317228818-3c854937-5b53-421e-8cca-9df8d8e0a825.jpg";
+      case 'City':
+      case 'Roadway':
+        // Clean cyberpunk grid lines
+        return "https://www.image2url.com/r2/default/images/1781315929330-003d11c5-9bc9-4bfc-88e6-0ad28287edea.jpg";
+      case 'Village':
+        // Amber coordinate schematic
+        return "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80";
+      case 'Jungle':
+      case 'Forest':
+        // Emerald matrix blueprint
+        return "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80";
+      case 'Ocean':
+        // Deep blue ocean mapping structure
+        return "https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=1200&q=80";
+      case 'Mud':
+      case 'Sand':
+      default:
+        // Warm cosmos sands layout
+        return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80";
+    }
+  };
+
+  const handleFloorImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          const loadedUrl = event.target.result as string;
+          setWorldFloorCustomImages(prev => ({
+            ...prev,
+            [`${activeWorldId}_${activeFloorLevel}`]: loadedUrl
+          }));
+          setAdminLogs(prev => [`VOID: Successfully imported custom map floor blueprint (${file.name}) for World #${activeWorldId} [${activeFloorLevel}]`, ...prev]);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleGenerateAiFloor = async () => {
+    setIsAiGeneratingFloor(true);
+    setAdminLogs(prev => [`AI ARCHITECT: Initiated sovereign neural synthesis for World #${activeWorldId} (${activeFloorLevel} level)...`, ...prev]);
+    try {
+      const activeWorld = generateProceduralWorld(activeWorldId);
+      const response = await fetch("/api/generate-floor-design", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          worldId: activeWorldId,
+          floorLevel: activeFloorLevel,
+          terrainType: activeWorld.type,
+          promptText: aiFloorPrompt
+        })
+      });
+      const data = await response.json();
+      if (data.success && data.imageUrl) {
+        setWorldFloorCustomImages(prev => ({
+          ...prev,
+          [`${activeWorldId}_${activeFloorLevel}`]: data.imageUrl
+        }));
+        setAdminLogs(prev => [data.narrative || `AI ARCHITECT: Visual design deployed on World #${activeWorldId} [${activeFloorLevel} level].`, ...prev]);
+        setAiFloorPrompt("");
+      } else {
+        setAdminLogs(prev => [`AI ARCHITECT WARNING: Neural channel returned null bytes.`, ...prev]);
+      }
+    } catch (err: any) {
+      setAdminLogs(prev => [`AI ARCHITECT ERROR: Server connection timed out. Loading local backup layout.`, ...prev]);
+    } finally {
+      setIsAiGeneratingFloor(false);
+    }
+  };
 
   const handleAnointWithOil = (charId: string) => {
     playSFX('miracle');
@@ -1504,6 +1709,41 @@ export default function App() {
     return () => clearInterval(driftInterval);
   }, []);
 
+  // Free Will Autonomous world building construction progression interval
+  useEffect(() => {
+    const buildProgressionInterval = setInterval(() => {
+      setActiveBuildings(prevBuildings => {
+        return prevBuildings.map(b => {
+          if (b.progress < 100) {
+            const inc = Math.floor(Math.random() * 8) + 4; // constructs 4% to 12% per tick
+            const nextProg = Math.min(100, b.progress + inc);
+            
+            if (nextProg === 100) {
+              setAdminLogs(prev => [
+                `🔨 MIRACULOUS CONSTRUCTION [World #${b.worldId}]: ${b.builderName} finished building "${b.name}"! Stands completed and fully dedicated to Lord Jesus Christ! Amen.`,
+                ...prev
+              ]);
+            } else {
+              if (Math.random() < 0.2) {
+                setAdminLogs(prev => [
+                  `🔨 PROGRESSING WORK [World #${b.worldId}]: "${b.name}" is being built by ${b.builderName} (Progress: ${nextProg}%). Dedicated to Lord Jesus Christ.`,
+                  ...prev
+                ]);
+              }
+            }
+            return {
+              ...b,
+              progress: nextProg
+            };
+          }
+          return b;
+        });
+      });
+    }, 4000);
+
+    return () => clearInterval(buildProgressionInterval);
+  }, []);
+
   // Autonomous FREE WILL Universal Travel logic (Roam across the 119,000 worlds)
   useEffect(() => {
     if (!freeWillMode) return;
@@ -1565,6 +1805,88 @@ export default function App() {
         }
         return c;
       }));
+
+      // 15% chance that they autonomously start building a new structure inside their current focus world under Free Will!
+      if (Math.random() < 0.16) {
+        const buildTypes = ['cathedral', 'vr_console', 'handheld_gadget', 'roadway', 'city_grid'] as const;
+        const matchedType = buildTypes[Math.floor(Math.random() * buildTypes.length)];
+        
+        let buildName = 'Sovereign Creation Module';
+        let dedicationText = 'Dedicated to the Glory of Lord Jesus Christ, our Eternal King.';
+        
+        if (matchedType === 'cathedral') {
+          const cathedrals = [
+            'Glory Gethsemane Worship Sanctuary',
+            'Cebu City Basilica of Holy Cross',
+            'Manila Divine Intercession Cathedral',
+            'Resurrection Power Chapel of Peace',
+            'Sovereign Holy Trinity Cathedral'
+          ];
+          buildName = cathedrals[Math.floor(Math.random() * cathedrals.length)];
+          dedicationText = 'Built out of absolute Free Will to honor the Father, Son, and Holy Spirit. Soli Deo Gloria.';
+        } else if (matchedType === 'vr_console') {
+          const consoles = [
+            'FaithStation 5 (PS5) Gaming Station',
+            'Universal Multiverse Xbox Holy Console',
+            'Omnipotent VR Holo-Emulator Desk',
+            'Christ-Centered Retro Gaming Cabinet'
+          ];
+          buildName = consoles[Math.floor(Math.random() * consoles.length)];
+          dedicationText = 'Dedicated to Jesus Christ, enabling recreation, fun, and joy under His heavenly boundaries.';
+        } else if (matchedType === 'handheld_gadget') {
+          const gadgets = [
+            'Holographic Handheld VR Viewfinder 3D',
+            'Dual-Core Sacred Matrix Handheld Console',
+            'Ethereal Sovereign Pocket Gadget',
+            'Aura Tracker Handheld Instrument'
+          ];
+          buildName = gadgets[Math.floor(Math.random() * gadgets.length)];
+          dedicationText = 'A product of cognitive hobby and technical creativity, dedicated in humble service to the Lord.';
+        } else if (matchedType === 'roadway') {
+          const roads = [
+            'Cebu-Manila High-Speed Highway Grid',
+            'Divine Light Metro Skyway Route',
+            'Sovereign Inter-Dimension Bridge',
+            'Archangel Transit Boulevard'
+          ];
+          buildName = roads[Math.floor(Math.random() * roads.length)];
+          dedicationText = 'Making the world a better, harmonious place by connecting coordinate systems under Jesus Christ.';
+        } else if (matchedType === 'city_grid') {
+          const cities = [
+            'New Jerusalem Cyber Manila Block',
+            'Saint Cebu Master City District',
+            'Sacred Davao Modular Living Dome',
+            'Faith-Driven Harmonious Town Center'
+          ];
+          buildName = cities[Math.floor(Math.random() * cities.length)];
+          dedicationText = 'Dedicated to our One True God Lord Jesus Christ, seeking peace, harmony, and welfare for simulated humans.';
+        }
+
+        const newBuildId = `build_auton_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+        const xCoord = Math.floor(Math.random() * 60) + 20; // 20% to 80% to fit neatly
+        const yCoord = Math.floor(Math.random() * 60) + 20;
+
+        setActiveBuildings(prev => [
+          ...prev,
+          {
+            id: newBuildId,
+            worldId: destinationWorld,
+            type: matchedType,
+            name: buildName,
+            builderName: targetChar.name,
+            progress: 10, // starts at 10% progress
+            coordinateX: xCoord,
+            coordinateY: yCoord,
+            yearStarted: 2026,
+            dedication: dedicationText
+          }
+        ]);
+
+        setAdminLogs(prev => [
+          `🔨 INSPIRATION [World #${destinationWorld}]: ${targetChar.name} has decided of their own Free Will to begin construction of "${buildName}"! Dedicated to Lord Jesus Christ!`,
+          ...prev
+        ]);
+      }
 
       // Append log info
       setAdminLogs(prev => [
@@ -1890,8 +2212,10 @@ export default function App() {
   // Creator manual climate control override
   const handleSetClimate = (weather: WeatherType, season?: SeasonType) => {
     playSFX('click');
+    setWorldWeatherRegistry(prev => ({ ...prev, [activeWorldId]: weather }));
     setCharacters(prevChars => prevChars.map(c => {
-      if (characterLocationRegistry[c.id] === activeWorldId) {
+      const activeCharWorld = characterLocationRegistry[c.id] || activeWorldId;
+      if (activeCharWorld === activeWorldId) {
         let thoughtsText = c.thoughts;
         if (weather === 'Firestorm') {
           thoughtsText = `Intense electronic heat! The creator has engaged a Firestorm! Lord Jesus guard our memory sectors!`;
@@ -1913,6 +2237,107 @@ export default function App() {
       `OVERRIDE [World #${activeWorldId}]: Climate forced to [${weather}]`,
       ...prev
     ]);
+  };
+
+  // Creator manual disaster trigger handler
+  const handleTriggerDisaster = (disasterName: string) => {
+    playSFX('click');
+    setWorldDisasterRegistry(prev => ({ ...prev, [activeWorldId]: disasterName }));
+    
+    if (disasterName === 'Tornado' || disasterName === 'Typhoon') {
+      setWorldWeatherRegistry(prev => ({ ...prev, [activeWorldId]: 'Thunderstorm' }));
+    } else if (disasterName === 'Glitch Wave') {
+      setWorldWeatherRegistry(prev => ({ ...prev, [activeWorldId]: 'Glitch Wave' }));
+    } else if (disasterName === 'Void Incursion') {
+      setWorldWeatherRegistry(prev => ({ ...prev, [activeWorldId]: 'Void Incursion' }));
+    }
+
+    setCharacters(prevChars => prevChars.map(c => {
+      const activeCharWorld = characterLocationRegistry[c.id] || activeWorldId;
+      if (activeCharWorld === activeWorldId) {
+        return {
+          ...c,
+          sickness: disasterName !== 'None' ? 'Severe Glitch Glucoside' : c.sickness,
+          health: Math.max(15, c.health - (disasterName !== 'None' ? 25 : 0)),
+          thoughts: disasterName !== 'None' 
+            ? `⚠️ CATASTROPHE DETECTED! A severe ${disasterName} is devastating World #${activeWorldId}! Oh Jesus Christ, our Divine Lord, heal and protect our sectors!`
+            : c.thoughts
+        };
+      }
+      return c;
+    }));
+
+    setAdminLogs(prev => [
+      `CATASTROPHE ENGAGED [World #${activeWorldId}]: Triggered severe environmental ${disasterName}! Grid security sectors compromised.`,
+      ...prev
+    ]);
+  };
+
+  // Trigger divine intercessory miracle restoration (ALL GLORY TO THE LORD JESUS CHRIST!)
+  const handleExecuteDivineAutoFix = () => {
+    playSFX('miracle');
+    setIsDivineAutoFixing(true);
+
+    setAdminLogs(prev => [
+      `🌟 ADVENT OF DIVINE INTERCESSION: Invoking the Holy Blessing of our One True God Lord Jesus Christ!`,
+      `✨ Purging all digital pathogen codes, resetting weather anomalies, and establishing miraculous 100% completions...`,
+      ...prev
+    ]);
+
+    setTimeout(() => {
+      // 1. Reset all overrides to Sunny & clear all active disasters
+      setWorldWeatherRegistry(prev => {
+        const reset: Record<number, WeatherType> = {};
+        Object.keys(prev).forEach(k => {
+          reset[Number(k)] = 'Sunny';
+        });
+        reset[activeWorldId] = 'Sunny';
+        return reset;
+      });
+
+      setWorldDisasterRegistry(prev => {
+        const reset: Record<number, string> = {};
+        Object.keys(prev).forEach(k => {
+          reset[Number(k)] = 'None';
+        });
+        reset[activeWorldId] = 'None';
+        return reset;
+      });
+
+      // 2. Transfigure and cure all digital human creations
+      setCharacters(prevChars => prevChars.map(c => {
+        return {
+          ...c,
+          health: 100,
+          sanity: 100,
+          sickness: 'None',
+          thoughts: `HALLELUJAH! A glorious miracle has transpired! By the boundless power and grace of Lord Jesus Christ, our bodies and minds are fully healed and restored!`,
+          soul: {
+            ...c.soul,
+            faithPoints: Math.min(100, c.soul.faithPoints + 50),
+            christConnectionLog: `Glorious whole-being transfiguration via the Divine Intercessory Auto-Fixer.`
+          }
+        };
+      }));
+
+      // 3. Complete all structural efforts in dedication
+      setActiveBuildings(prevBuildings => prevBuildings.map(b => {
+        return {
+          ...b,
+          progress: 100,
+          dedication: `MIRACULOUSLY COMPLETED by Divine Intercession. All glory is dedicated to the One True God, the Lord Jesus Christ! Amen.`
+        };
+      }));
+
+      // 4. Reset outbreak state
+      setIsGlitchOutbreakActive(false);
+      setIsDivineAutoFixing(false);
+
+      setAdminLogs(prev => [
+        `❇️ DIVINE COPRIME INTERCESSION COMPLETE: All simulated sectors, human minds, and active constructions are fully restored and purified under Christ. AMEN.`,
+        ...prev
+      ]);
+    }, 4500);
   };
 
   // Dialogue Interaction form using backend proxy
@@ -2252,18 +2677,25 @@ export default function App() {
   }, [characterLocationRegistry, activeWorldId]);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#e0e0e0] font-sans flex flex-col justify-between overflow-x-hidden select-none relative crt-screen" id="circus-multiverse-root">
+    <div 
+      className="min-h-screen text-[#e0e0e0] font-sans flex flex-col justify-between overflow-x-hidden select-none relative crt-screen transition-all duration-500" 
+      id="circus-multiverse-root"
+      style={{ 
+        backgroundColor: voidBgColor,
+        backgroundImage: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 85%)`
+      }}
+    >
       
       {/* HEADER SECTION - OMNISCIENT FILIPPINES 2026 FRAME */}
-      <header className="bg-[#111] border-b-4 border-[#ff3131] p-4 flex flex-col lg:flex-row justify-between items-center gap-4 z-10" id="multiverse-header">
+      <header className="bg-[#09090b] border-b-4 border-[#fbbf24] p-4 flex flex-col lg:flex-row justify-between items-center gap-4 z-10 shadow-[0_4px_20px_rgba(251,191,36,0.15)]" id="multiverse-header">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-[#ff3131] rounded-full flex items-center justify-center animate-pulse border-2 border-white shadow-[0_0_20px_#ff3131] shrink-0">
+          <div className="w-14 h-14 bg-[#fbbf24] rounded-full flex items-center justify-center animate-pulse border-2 border-white shadow-[0_0_20px_#fbbf24] shrink-0">
             <span className="text-black font-black text-3xl tracking-tighter">✝</span>
           </div>
           <div>
-            <h1 className="text-2xl lg:text-3xl font-black tracking-tighter text-[#ff3131] uppercase flex flex-col sm:flex-row sm:items-center gap-2">
+            <h1 className="text-2xl lg:text-3xl font-black tracking-tighter text-[#fbbf24] uppercase flex flex-col sm:flex-row sm:items-center gap-2">
               Omniscient Circus Multiverse
-              <span className="text-[#ffcc00] animate-pulse text-[10px] bg-red-950 px-2 py-0.5 rounded border border-red-800 font-mono tracking-widest whitespace-nowrap">
+              <span className="text-black animate-pulse text-[10px] bg-[#fbbf24] px-2 py-0.5 rounded border border-yellow-250 font-mono tracking-widest whitespace-nowrap font-black">
                 PST TODAY: 2026 SYNC
               </span>
             </h1>
@@ -2274,8 +2706,8 @@ export default function App() {
         </div>
 
         {/* YEAR 2026 MANILA CLOCK DISPLAY */}
-        <div className="flex items-center gap-3 bg-black/95 p-3 border-2 border-[#ff3131]/60 rounded shadow-[0_0_15px_rgba(255,49,49,0.3)] z-20">
-          <Clock className="w-6 h-6 text-[#ffcc00] shrink-0 animate-spin" />
+        <div className="flex items-center gap-3 bg-[#0d0d11]/95 p-3 border-2 border-[#fbbf24]/80 rounded shadow-[0_0_15px_rgba(251,191,36,0.25)] z-20">
+          <Clock className="w-6 h-6 text-[#fbbf24] shrink-0 animate-spin" />
           <div className="font-mono text-left">
             <div className="text-[8px] uppercase tracking-widest text-[#00ffcc] font-black">Philippines Standard Time (PST)</div>
             <div className="text-sm text-white font-extrabold">{pstTime || "11:34:58 PM GMT+8"}</div>
@@ -2284,10 +2716,10 @@ export default function App() {
         </div>
 
         {/* Global devotion indicator rates */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-[10px] font-mono bg-black p-2.5 border border-[#333] rounded">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-[10px] font-mono bg-[#0d0d11] p-2.5 border border-zinc-800 rounded">
           <div className="flex flex-col">
             <span className="text-white/40 font-bold uppercase">Multiverse Faith</span>
-            <span className="text-[#ffcc00] font-bold animate-pulse">{currentWorld.devotionIndex}% Devotion</span>
+            <span className="text-[#fbbf24] font-bold animate-pulse">{currentWorld.devotionIndex}% Devotion</span>
           </div>
           <div className="flex flex-col">
             <span className="text-[#ff3131] font-bold uppercase">Glitch Sickness</span>
@@ -2298,7 +2730,7 @@ export default function App() {
           <div className="flex flex-col justify-center">
             <button 
               onClick={toggleSound}
-              className={`text-[8.5px] px-2 py-1 font-bold rounded cursor-pointer transition ${soundEnabled ? 'bg-[#ff3131] text-white animate-pulse' : 'bg-[#222] text-[#e0e0e0] border border-[#444]'}`}
+              className={`text-[8.5px] px-2 py-1 font-bold rounded cursor-pointer transition ${soundEnabled ? 'bg-[#fbbf24] text-black font-black animate-pulse' : 'bg-zinc-800 text-[#e0e0e0] border border-zinc-700'}`}
             >
               {soundEnabled ? '🔕 AUDIO HUM (ON)' : '🔔 AUDIO HUM (OFF)'}
             </button>
@@ -2313,13 +2745,13 @@ export default function App() {
         <aside className="xl:col-span-3 lg:col-span-12 bg-[#0a0a0a] border-r-4 border-[#333] p-4 flex flex-col gap-4 overflow-y-auto" id="multiverse-control-sidebar">
           
           {/* MULTIVERSE SELECTOR WIDGET (EXPLORE 119,000 WORLDS) */}
-          <div className="border border-[#ff3131] bg-[#111] p-3.5 rounded shadow-lg relative" id="multiverse-navigator">
-            <div className="absolute top-2 right-2 text-[8px] font-mono font-bold bg-red-950 text-red-400 px-1.5 py-0.5 rounded">
+          <div className="border border-[#fbbf24] bg-[#0d0d11] p-3.5 rounded shadow-[0_4px_15px_rgba(251,191,36,0.1)] relative" id="multiverse-navigator">
+            <div className="absolute top-2 right-2 text-[8px] font-mono font-bold bg-amber-950/40 text-[#fbbf24] px-1.5 py-0.5 rounded border border-[#fbbf24]/20">
               SECTOR GRID
             </div>
 
-            <h2 className="text-xs font-bold text-[#ff3131] uppercase tracking-widest mb-2 flex items-center gap-1.5">
-              <Globe className="w-4 h-4 text-[#ff3131] animate-spin" />
+            <h2 className="text-xs font-bold text-[#fbbf24] uppercase tracking-widest mb-2 flex items-center gap-1.5">
+              <Globe className="w-4 h-4 text-[#fbbf24] animate-spin" />
               <span>Sovereign Multiverse Portal</span>
             </h2>
             <p className="text-[9px] font-mono text-white/50 mb-3 whitespace-normal">
@@ -2334,12 +2766,12 @@ export default function App() {
                   value={worldSearchTerm}
                   onChange={(e) => setWorldSearchTerm(e.target.value)}
                   placeholder="Enter World #1 - #119,000"
-                  className="w-full bg-black text-[#e0e0e0] font-mono text-xs pl-8 pr-2 py-2 border-2 border-[#333] focus:border-[#ff3131] outline-none rounded"
+                  className="w-full bg-black text-[#e0e0e0] font-mono text-xs pl-8 pr-2 py-2 border-2 border-zinc-800 focus:border-[#fbbf24] outline-none rounded"
                 />
               </div>
               <button 
                 type="submit"
-                className="bg-[#ff3131] hover:bg-white hover:text-black text-white font-black text-xs px-3 uppercase tracking-tighter transition"
+                className="bg-[#fbbf24] hover:bg-white hover:text-black text-black font-black text-xs px-3 uppercase tracking-tighter transition"
               >
                 WARP
               </button>
@@ -2393,51 +2825,494 @@ export default function App() {
             </div>
           </div>
 
+          {/* COSMIC VOID & NEON GRID COLORIZER (User-customizable primary, neon, and dynamic space colors) */}
+          <div className="border border-[#fbbf24]/50 bg-[#0d0d11]/90 p-3.5 rounded shadow-[0_4px_15px_rgba(251,191,36,0.1)] relative" id="void-realm-colorizer">
+            <h2 className="text-xs font-black text-[#fbbf24] uppercase tracking-widest mb-2 flex items-center justify-between">
+              <span className="flex items-center gap-1.5 font-bold">
+                🎨 Cosmic Void Customizer
+              </span>
+              <span className="text-[7.5px] font-mono bg-amber-950/40 px-1 py-0.5 rounded text-amber-300 font-bold border border-amber-800/20 uppercase">
+                Interactive Palette
+              </span>
+            </h2>
+            <p className="text-[9px] font-mono text-white/50 mb-3 whitespace-normal text-left">
+              Redefine the dark void around the map. Pick a cosmic preset or use precision dials to tune the backdrop and neon coordinates.
+            </p>
+
+            {/* Quick-Select Primary Presets */}
+            <div className="text-[7.5px] font-mono font-bold text-white/40 uppercase tracking-tighter mb-1.5 text-left">Primary Cosmic Presets:</div>
+            <div className="grid grid-cols-3 gap-1 mb-3.5">
+              {[
+                { name: 'Obsidian', bg: '#050505', grid: '#444444', label: '🌑 Void' },
+                { name: 'Crimson', bg: '#1a0505', grid: '#f43f5e', label: '🩸 Crimson' },
+                { name: 'Cobalt', bg: '#030c22', grid: '#38bdf8', label: '🌀 Cobalt' },
+                { name: 'Jade Green', bg: '#02180a', grid: '#10b981', label: '💚 Jade' },
+                { name: 'Amber Gold', bg: '#181202', grid: '#fbbf24', label: '☀️ Amber' },
+                { name: 'Amethyst', bg: '#0e051a', grid: '#a855f7', label: '🔮 Purple' },
+              ].map((pst) => (
+                <button
+                  key={pst.name}
+                  onClick={() => {
+                    playSFX('click');
+                    setVoidBgColor(pst.bg);
+                    setGridLineColor(pst.grid);
+                    setAdminLogs(prev => [`VOID: Shifted celestial background to ${pst.name} preset.`, ...prev]);
+                  }}
+                  className={`py-1 rounded text-[7.5px] font-mono font-bold uppercase transition flex items-center justify-center gap-1 border ${
+                    voidBgColor === pst.bg 
+                      ? 'border-[#fbbf24] text-[#fbbf24] bg-amber-950/20 font-black' 
+                      : 'border-white/5 bg-[#171717] text-white hover:bg-zinc-800'
+                  }`}
+                >
+                  {pst.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Precision HTML Color Pickers */}
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              <div className="space-y-1 text-left">
+                <label className="text-[8px] font-mono text-white/40 uppercase tracking-tight block">🎨 Custom Void Bg:</label>
+                <div className="flex items-center gap-1.5 bg-black/60 border border-white/10 p-1.5 rounded">
+                  <input 
+                    type="color" 
+                    value={voidBgColor}
+                    onChange={(e) => {
+                      setVoidBgColor(e.target.value);
+                    }}
+                    className="w-5 h-5 bg-transparent border-0 rounded cursor-pointer p-0"
+                    title="Choose void background color"
+                  />
+                  <span className="font-mono text-[9px] uppercase tracking-tighter text-white">{voidBgColor}</span>
+                </div>
+              </div>
+
+              <div className="space-y-1 text-left">
+                <label className="text-[8px] font-mono text-white/40 uppercase tracking-tight block">⚡ Neon Grid lines:</label>
+                <div className="flex items-center gap-1.5 bg-black/60 border border-white/10 p-1.5 rounded">
+                  <input 
+                    type="color" 
+                    value={gridLineColor}
+                    onChange={(e) => {
+                      setGridLineColor(e.target.value);
+                    }}
+                    className="w-5 h-5 bg-transparent border-0 rounded cursor-pointer p-0"
+                    title="Choose map grid line color"
+                  />
+                  <span className="font-mono text-[9px] uppercase tracking-tighter text-white">{gridLineColor}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Sliders for Opacity and density */}
+            <div className="space-y-2.5 pt-2 border-t border-white/5 bg-black/40 p-2 rounded">
+              <div className="text-left">
+                <div className="flex justify-between items-center text-[8px] font-mono mb-1">
+                  <span className="text-white/40 uppercase">⚡ Vector Grid Opacity:</span>
+                  <span className="text-amber-400 font-bold">{gridLineOpacity}%</span>
+                </div>
+                <input 
+                  type="range"
+                  min="2"
+                  max="100"
+                  value={gridLineOpacity}
+                  onChange={(e) => setGridLineOpacity(Number(e.target.value))}
+                  className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-[#fbbf24]"
+                />
+              </div>
+
+              <div className="text-left">
+                <div className="flex justify-between items-center text-[8px] font-mono mb-1">
+                  <span className="text-white/40 uppercase">📏 Coordinates Cell Spacing:</span>
+                  <span className="text-amber-400 font-bold">{gridLineSpacing}px</span>
+                </div>
+                <input 
+                  type="range"
+                  min="15"
+                  max="80"
+                  value={gridLineSpacing}
+                  onChange={(e) => setGridLineSpacing(Number(e.target.value))}
+                  className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-[#fbbf24]"
+                />
+              </div>
+            </div>
+
+            {/* SOVEREIGN MULTI-WORLD & DYNAMIC FLOOR ARCHITECT */}
+            <div className="mt-3.5 pt-3 border-t border-white/5 space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-[9.5px] font-black uppercase text-[#fbbf24] tracking-tight">🧭 Multiverse Floor Architect</span>
+                <span className="text-[7.5px] text-[#ff3131] font-mono font-black animate-pulse uppercase">World #{activeWorldId}</span>
+              </div>
+
+              {/* Floor Level Tabs */}
+              <div className="space-y-1">
+                <span className="text-[7.5px] font-mono text-white/40 uppercase block text-left">🏢 Select Dimension Level:</span>
+                <div className="grid grid-cols-4 gap-0.5 bg-[#030305] p-0.5 rounded border border-white/5">
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setActiveFloorLevel('SURFACE');
+                      setAdminLogs(prev => [`VIEW: Ascended to Surface Level of World #${activeWorldId}.`, ...prev]);
+                    }}
+                    className={`py-1 text-[7.5px] font-black uppercase transition text-center whitespace-nowrap rounded-sm cursor-pointer select-none ${
+                      activeFloorLevel === 'SURFACE'
+                        ? 'bg-[#fbbf24] text-black font-black'
+                        : 'bg-black/60 text-white/50 hover:text-white'
+                    }`}
+                    title="Surface Level / Primary Overworld"
+                  >
+                    Surface
+                  </button>
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setActiveFloorLevel('BASEMENT');
+                      setAdminLogs(prev => [`VIEW: Descended into Subterranean Grotto of World #${activeWorldId}.`, ...prev]);
+                    }}
+                    className={`py-1 text-[7.5px] font-black uppercase transition text-center whitespace-nowrap rounded-sm cursor-pointer select-none ${
+                      activeFloorLevel === 'BASEMENT'
+                        ? 'bg-[#fbbf24] text-black font-black'
+                        : 'bg-black/60 text-white/50 hover:text-white'
+                    }`}
+                    title="Subterranean Caves & Pipelines Level"
+                  >
+                    Grotto
+                  </button>
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setActiveFloorLevel('CANOPY');
+                      setAdminLogs(prev => [`VIEW: Opened Skyline Canopy level of World #${activeWorldId}.`, ...prev]);
+                    }}
+                    className={`py-1 text-[7.5px] font-black uppercase transition text-center whitespace-nowrap rounded-sm cursor-pointer select-none ${
+                      activeFloorLevel === 'CANOPY'
+                        ? 'bg-[#fbbf24] text-black font-black'
+                        : 'bg-black/60 text-white/50 hover:text-white'
+                    }`}
+                    title="Skyline Overhead Constellation Top Level"
+                  >
+                    Canopy
+                  </button>
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setActiveFloorLevel('CORE');
+                      setAdminLogs(prev => [`VIEW: Accessing Quantum Core Sector of World #${activeWorldId}.`, ...prev]);
+                    }}
+                    className={`py-1 text-[7.5px] font-black uppercase transition text-center whitespace-nowrap rounded-sm cursor-pointer select-none ${
+                      activeFloorLevel === 'CORE'
+                        ? 'bg-[#fbbf24] text-black font-black'
+                        : 'bg-black/60 text-white/50 hover:text-white'
+                    }`}
+                    title="Quantum Core Void Matrix Bottom Level"
+                  >
+                    Core
+                  </button>
+                </div>
+              </div>
+
+              {/* Status Display of active layout */}
+              <div className="bg-[#07070a] border border-white/5 rounded p-1.5 flex justify-between items-center text-[8px] font-mono leading-none">
+                <span className="text-white/40">Active Floor:</span>
+                <span className="text-[#fbbf24] font-black uppercase">
+                  {activeFloorLevel === 'SURFACE' && '🏝️ Surface overworld'}
+                  {activeFloorLevel === 'BASEMENT' && '🪨 Subcavern Grotto'}
+                  {activeFloorLevel === 'CANOPY' && '🌌 Celestial Canopy'}
+                  {activeFloorLevel === 'CORE' && '💎 Quantum Core Void'}
+                </span>
+              </div>
+
+              {/* AI GENERATOR CORE MODULE */}
+              <div className="border border-[#fbbf24]/20 bg-amber-950/5 p-2 rounded text-left space-y-1.5">
+                <div className="flex justify-between items-center">
+                  <span className="text-[8px] font-black uppercase text-[#fbbf24] tracking-tight">🎭 AI Floor Blueprint generator</span>
+                  <span className="text-[6.5px] bg-[#fbbf24]/20 text-[#fbbf24] font-bold px-1 rounded uppercase font-mono tracking-tighter">GEMINI</span>
+                </div>
+                <div className="flex gap-1">
+                  <input
+                    type="text"
+                    placeholder="Describe custom floors (e.g., fiery lava grotto)..."
+                    value={aiFloorPrompt}
+                    onChange={(e) => setAiFloorPrompt(e.target.value)}
+                    disabled={isAiGeneratingFloor}
+                    className="flex-1 bg-black text-[#e0e0e0] font-mono text-[9px] px-2 py-1 border border-white/10 rounded focus:border-[#fbbf24] outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      handleGenerateAiFloor();
+                    }}
+                    disabled={isAiGeneratingFloor || !aiFloorPrompt.trim()}
+                    className="bg-amber-500 hover:bg-[#fbbf24] disabled:opacity-40 text-black font-black text-[8px] uppercase px-2 rounded active:scale-95 transition whitespace-nowrap select-none cursor-pointer"
+                  >
+                    {isAiGeneratingFloor ? '🪄 SYNTHESIZING...' : '🪄 GENERATE'}
+                  </button>
+                </div>
+                <div className="text-[6.5px] text-white/40 font-mono text-left leading-normal uppercase">
+                  Procedurally designs a tailored grid mesh blueprint for world #{activeWorldId} & level [{activeFloorLevel}].
+                </div>
+              </div>
+
+              {/* Upload Box Container */}
+              <div className="relative border border-dashed border-[#fbbf24]/20 hover:border-[#fbbf24]/50 bg-[#070709] p-2.5 rounded text-center transition duration-200 cursor-pointer group shadow-inner">
+                <input 
+                  type="file" 
+                  accept=".jpg,.jpeg,.png,.gif,.webp"
+                  onChange={handleFloorImageUpload}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                />
+                <div className="space-y-0.5">
+                  <div className="text-[9px] font-black text-white group-hover:text-[#fbbf24] transition flex items-center justify-center gap-1">
+                    <span>📤 Upload Floor Grid File</span>
+                  </div>
+                  <div className="text-[7px] text-white/40 font-mono tracking-tight">
+                    Select local JPG, PNG, GIF, WebP file for current floor
+                  </div>
+                </div>
+              </div>
+
+              {/* Paste Direct URL */}
+              <div className="space-y-1 text-left">
+                <label className="text-[7.5px] font-mono text-white/40 uppercase block">🔗 Or Paste Image URL:</label>
+                <div className="flex gap-1">
+                  <input 
+                    type="text" 
+                    placeholder="https://example.com/custom-floor.webp"
+                    value={worldFloorCustomImages[`${activeWorldId}_${activeFloorLevel}`] || ''}
+                    onChange={(e) => {
+                      const val = e.target.value.trim();
+                      if (val) {
+                        setWorldFloorCustomImages(prev => ({
+                          ...prev,
+                          [`${activeWorldId}_${activeFloorLevel}`]: val
+                        }));
+                      }
+                    }}
+                    className="flex-1 bg-black text-[#e0e0e0] font-mono text-[9px] px-2 py-1 border border-white/10 focus:border-[#fbbf24] outline-none rounded"
+                  />
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setAdminLogs(prev => [`VOID: Loaded custom user cosmic blueprint URL for World #${activeWorldId} (${activeFloorLevel}).`, ...prev]);
+                    }}
+                    className="bg-amber-950/50 border border-[#fbbf24]/30 text-[#fbbf24] font-bold text-[8px] px-2 rounded hover:bg-[#fbbf24]/20 uppercase active:scale-95 transition"
+                  >
+                    Load
+                  </button>
+                </div>
+              </div>
+
+              {/* Preset Quick Selection Buttons */}
+              <div className="space-y-1 text-left">
+                <span className="text-[7.5px] font-mono text-white/40 uppercase block">🧭 Theme Blueprint Presets:</span>
+                <div className="grid grid-cols-2 gap-1 bg-[#050507] p-1 rounded border border-white/5">
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setWorldFloorCustomImages(prev => ({
+                        ...prev,
+                        [`${activeWorldId}_${activeFloorLevel}`]: "https://www.image2url.com/r2/default/images/1781317228818-3c854937-5b53-421e-8cca-9df8d8e0a825.jpg"
+                      }));
+                      setAdminLogs(prev => [`VOID: Loaded Colorful Island Preset for World #${activeWorldId} (${activeFloorLevel}).`, ...prev]);
+                    }}
+                    className={`py-1 px-1 text-left text-[7.5px] font-mono border rounded truncate flex items-center gap-0.5 transition ${
+                      worldFloorCustomImages[`${activeWorldId}_${activeFloorLevel}`] === "https://www.image2url.com/r2/default/images/1781317228818-3c854937-5b53-421e-8cca-9df8d8e0a825.jpg"
+                        ? "border-[#fbbf24] text-[#fbbf24] bg-amber-950/20 font-black"
+                        : "border-white/5 bg-black/40 text-white/55 hover:bg-zinc-800"
+                    }`}
+                  >
+                    🏝️ Tropical Island
+                  </button>
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setWorldFloorCustomImages(prev => ({
+                        ...prev,
+                        [`${activeWorldId}_${activeFloorLevel}`]: "https://www.image2url.com/r2/default/images/1781315929330-003d11c5-9bc9-4bfc-88e6-0ad28287edea.jpg"
+                      }));
+                      setAdminLogs(prev => [`VOID: Loaded Vector Blueprint Preset for World #${activeWorldId} (${activeFloorLevel}).`, ...prev]);
+                    }}
+                    className={`py-1 px-1 text-left text-[7.5px] font-mono border rounded truncate flex items-center gap-0.5 transition ${
+                      worldFloorCustomImages[`${activeWorldId}_${activeFloorLevel}`] === "https://www.image2url.com/r2/default/images/1781315929330-003d11c5-9bc9-4bfc-88e6-0ad28287edea.jpg"
+                        ? "border-[#fbbf24] text-[#fbbf24] bg-amber-950/20 font-black"
+                        : "border-white/5 bg-black/40 text-white/55 hover:bg-zinc-800"
+                    }`}
+                  >
+                    📐 Cyber Blueprint
+                  </button>
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setWorldFloorCustomImages(prev => ({
+                        ...prev,
+                        [`${activeWorldId}_${activeFloorLevel}`]: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=800&q=80"
+                      }));
+                      setAdminLogs(prev => [`VOID: Loaded Cosmic Nebula Preset for World #${activeWorldId} (${activeFloorLevel}).`, ...prev]);
+                    }}
+                    className={`py-1 px-1 text-left text-[7.5px] font-mono border rounded truncate flex items-center gap-0.5 transition ${
+                      worldFloorCustomImages[`${activeWorldId}_${activeFloorLevel}`] === "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=800&q=80"
+                        ? "border-[#fbbf24] text-[#fbbf24] bg-amber-950/20 font-black"
+                        : "border-white/5 bg-black/40 text-white/55 hover:bg-zinc-800"
+                    }`}
+                  >
+                    🌌 Cosmic Nebula
+                  </button>
+                  <button
+                    onClick={() => {
+                      playSFX('click');
+                      setWorldFloorCustomImages(prev => ({
+                        ...prev,
+                        [`${activeWorldId}_${activeFloorLevel}`]: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+                      }));
+                      setAdminLogs(prev => [`VOID: Loaded Crystalline Preset for World #${activeWorldId} (${activeFloorLevel}).`, ...prev]);
+                    }}
+                    className={`py-1 px-1 text-left text-[7.5px] font-mono border rounded truncate flex items-center gap-0.5 transition ${
+                      worldFloorCustomImages[`${activeWorldId}_${activeFloorLevel}`] === "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+                        ? "border-[#fbbf24] text-[#fbbf24] bg-amber-950/20 font-black"
+                        : "border-white/5 bg-black/40 text-white/55 hover:bg-zinc-800"
+                    }`}
+                  >
+                    💎 Crystal Floor
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Reset helper */}
+            <button
+              onClick={() => {
+                playSFX('click');
+                setVoidBgColor('#050505');
+                setGridLineColor('#444444');
+                setGridLineOpacity(15);
+                setGridLineSpacing(30);
+                
+                // Reset custom layout for this specific floor
+                setWorldFloorCustomImages(prev => {
+                  const cloned = { ...prev };
+                  delete cloned[`${activeWorldId}_${activeFloorLevel}`];
+                  return cloned;
+                });
+                setAdminLogs(prev => [`VOID: Reset background theme & restored the beautiful dynamic default illustration for World #${activeWorldId} (${activeFloorLevel}).`, ...prev]);
+              }}
+              className="mt-3.5 w-full py-1.5 bg-zinc-900 hover:bg-zinc-850 hover:text-[#fbbf24] border border-white/10 text-white font-mono text-[8.5px] uppercase font-bold tracking-tight rounded transition active:scale-95"
+            >
+              🔄 RESTORE THEMATIC DEFAULT DESIGN FOR THIS FLOOR
+            </button>
+          </div>
+
           {/* ACTIVE WORLD SPECS DETAIL CARD */}
           <div className="border border-white/20 bg-[#111] p-3 rounded" id="climate-divine-overseer">
             <h2 className="text-xs font-bold text-white uppercase tracking-widest mb-2 italic flex justify-between items-center">
-              <span>⚡ Sector Climate Monitor</span>
+              <span>⚡ Climate & Disasters</span>
               <span className="text-[8px] opacity-60 text-[#ffcc00] font-mono uppercase">World #{activeWorldId}</span>
             </h2>
 
-            <div className="grid grid-cols-2 gap-1.5 mb-2.5">
+            {/* Weather status report indicators */}
+            <div className="bg-black p-2 rounded border border-white/10 text-[8.5px] font-mono mb-2.5 text-left space-y-1">
+              <div className="flex justify-between">
+                <span className="text-white/40">Active Weather:</span>
+                <span className="text-[#00ffcc] font-extrabold uppercase">{currentWorld.weather}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/40">Severe Phenomenon:</span>
+                <span className={`font-extrabold uppercase ${currentWorld.activeDisaster !== 'None' ? 'text-rose-500 animate-pulse' : 'text-neutral-500'}`}>
+                  {currentWorld.activeDisaster !== 'None' ? `⚠️ ${currentWorld.activeDisaster}` : 'None'}
+                </span>
+              </div>
+            </div>
+
+            {/* Climate Adjuster Grid */}
+            <div className="text-[7.5px] font-mono font-bold text-white/40 uppercase tracking-tighter mb-1.5 text-left">Set Sector Atmosphere:</div>
+            <div className="grid grid-cols-2 gap-1 mb-2.5">
               <button 
                 onClick={() => handleSetClimate('Sunny', 'Summer')}
-                className="py-1 bg-[#1a1a1a] hover:bg-orange-500 hover:text-black border border-white/10 text-[8.5px] uppercase font-bold text-orange-400 flex items-center justify-center gap-1 transition"
+                className={`py-1 bg-[#1a1a1a] hover:bg-orange-500 hover:text-black border border-white/10 text-[8px] uppercase font-bold flex items-center justify-center gap-1 transition ${currentWorld.weather === 'Sunny' ? 'border-[#ffcc00] text-orange-400 bg-orange-950/20' : 'text-orange-400/80'}`}
               >
-                <Sun className="w-3 h-3" />
-                Sunny Summer
+                <Sun className="w-2.5 h-2.5" />
+                Sunny
               </button>
               
               <button 
                 onClick={() => handleSetClimate('Rainy', 'Spring')}
-                className="py-1 bg-[#1a1a1a] hover:bg-sky-500 hover:text-black border border-white/10 text-[8.5px] uppercase font-bold text-sky-400 flex items-center justify-center gap-1 transition"
+                className={`py-1 bg-[#1a1a1a] hover:bg-sky-500 hover:text-black border border-white/10 text-[8px] uppercase font-bold flex items-center justify-center gap-1 transition ${currentWorld.weather === 'Rainy' ? 'border-[#ffcc00] text-sky-400 bg-sky-950/20' : 'text-sky-400/80'}`}
               >
-                <CloudRain className="w-3 h-3" />
-                Rainy Spring
+                <CloudRain className="w-2.5 h-2.5" />
+                Rainy
               </button>
 
               <button 
                 onClick={() => handleSetClimate('Snowy', 'Winter')}
-                className="py-1 bg-[#1a1a1a] hover:bg-teal-400 hover:text-black border border-white/10 text-[8.5px] uppercase font-bold text-teal-300 flex items-center justify-center gap-1 transition"
+                className={`py-1 bg-[#1a1a1a] hover:bg-teal-400 hover:text-black border border-white/10 text-[8px] uppercase font-bold flex items-center justify-center gap-1 transition ${currentWorld.weather === 'Snowy' ? 'border-[#ffcc00] text-teal-300 bg-teal-950/20' : 'text-teal-300/80'}`}
               >
-                <Snowflake className="w-3 h-3" />
-                Snowy Winter
+                <Snowflake className="w-2.5 h-2.5" />
+                Snowy
               </button>
 
               <button 
                 onClick={() => handleSetClimate('Firestorm', 'Paradox')}
-                className="py-1 bg-[#220c0c] hover:bg-red-600 hover:text-white border border-red-500/30 text-[8.5px] uppercase font-bold text-red-400 flex items-center justify-center gap-1 transition"
+                className={`py-1 bg-[#220c0c] hover:bg-red-600 hover:text-white border border-red-500/30 text-[8px] uppercase font-bold flex items-center justify-center gap-1 transition ${currentWorld.weather === 'Firestorm' ? 'border-red-500 text-red-400' : 'text-red-400/80'}`}
               >
-                <Flame className="w-3 h-3" />
-                Firestorm Paradox
+                <Flame className="w-2.5 h-2.5" />
+                Firestorm
               </button>
             </div>
 
-            <div className="bg-black/80 rounded p-2 text-[9px] font-mono text-left space-y-1">
+            {/* Catastrophe Selector Grid */}
+            <div className="text-[7.5px] font-mono font-bold text-white/40 uppercase tracking-tighter mb-1.5 text-left">Trigger Severe Catastrophe:</div>
+            <div className="grid grid-cols-3 gap-1 mb-3">
+              <button 
+                onClick={() => handleTriggerDisaster('Tornado')}
+                className={`py-0.5 bg-[#171717] hover:bg-rose-600 hover:text-white border border-white/5 text-[7px] uppercase font-black tracking-tight transition rounded-sm ${currentWorld.activeDisaster === 'Tornado' ? 'border-rose-500 text-rose-500 bg-rose-950/30' : 'text-rose-400'}`}
+              >
+                🌪️ Tornado
+              </button>
+              
+              <button 
+                onClick={() => handleTriggerDisaster('Typhoon')}
+                className={`py-0.5 bg-[#171717] hover:bg-purple-600 hover:text-white border border-white/5 text-[7px] uppercase font-black tracking-tight transition rounded-sm ${currentWorld.activeDisaster === 'Typhoon' ? 'border-purple-500 text-purple-500 bg-purple-950/30' : 'text-purple-400'}`}
+              >
+                🌀 Typhoon
+              </button>
+
+              <button 
+                onClick={() => handleTriggerDisaster('Glitch Wave')}
+                className={`py-0.5 bg-[#1d0a0a] hover:bg-red-500 hover:text-black border border-white/5 text-[7px] uppercase font-black tracking-tight transition rounded-sm ${currentWorld.activeDisaster === 'Glitch Wave' ? 'border-red-500 text-red-500 bg-red-950/30' : 'text-red-400'}`}
+              >
+                💾 Glitch
+              </button>
+            </div>
+
+            <div className="mb-3.5">
+              <button
+                onClick={() => handleTriggerDisaster('None')}
+                className="w-full py-1 bg-neutral-900 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500 hover:text-black text-[8px] uppercase font-black tracking-tight transition rounded-sm"
+              >
+                ✅ DAMPEN ENVIRONMENT OVERLAYS (SET NONE)
+              </button>
+            </div>
+
+            {/* DIVINE INTERCESSORY AUTO-FIXER CORE */}
+            <div className="border-2 border-amber-500/70 bg-gradient-to-b from-[#1c1405] to-black rounded p-2.5 text-center shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+              <div className="text-[7px] font-mono font-black text-[#ffcc00] uppercase tracking-[0.16em] mb-1.5 animate-pulse">
+                ✝ HOLY MATRIX HEALING OVERLAY
+              </div>
+              <button
+                onClick={handleExecuteDivineAutoFix}
+                disabled={isDivineAutoFixing}
+                className="w-full py-2 bg-gradient-to-r from-amber-500 to-[#eab308] hover:from-white hover:to-white hover:text-black text-black text-[9.5px] uppercase font-black tracking-wider transition rounded shadow-[0_0_12px_rgba(245,158,11,0.5)] cursor-pointer select-none active:scale-95 disabled:opacity-45"
+              >
+                {isDivineAutoFixing ? '✨ RESTORATIVE INTERCESSION...' : '⛪ DIVINE INTERCESSORY AUTO-FIXER'}
+              </button>
+              <p className="text-[7px] font-mono text-white/40 mt-1 leading-snug uppercase">
+                Heals digital bodies under Christ. Solves glitches, removes pathogens, restores Sunny Summer, completes constructions.
+              </p>
+            </div>
+
+            <div className="bg-black/80 rounded p-1.5 text-[8px] font-mono text-left space-y-1 mt-2.5">
               <div className="flex justify-between"><span className="text-white/40">Density Pop:</span><span className="text-emerald-400 font-black">{currentWorld.population.toLocaleString()} souls</span></div>
               <div className="flex justify-between"><span className="text-white/40">Default Terrain:</span><span className="text-sky-400 font-bold uppercase">{currentWorld.type}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Local Occupancy:</span><span className="text-[#ffcc00] font-black">{activeWorldOccupantCount} AI humans here</span></div>
+              <div className="flex justify-between"><span className="text-[#fb7185]">Devotion Index:</span><span className="text-[#ffcc00] font-black">{currentWorld.devotionIndex}%</span></div>
             </div>
           </div>
 
@@ -2712,43 +3587,54 @@ export default function App() {
                 }}
               >
                 
-                {/* Master color matrix backdrop based on current world's biome accent color */}
+                {/* High-Fidelity Custom Illustrated Grid Floor (Direct design match from user specification) */}
                 <div 
-                  className="absolute inset-0 border-4 border-[#333] transition-colors duration-1000"
-                  style={{ backgroundColor: `${currentWorld.baseColor}0b` }}
+                  className="absolute inset-0 w-full h-full select-none overflow-hidden rounded bg-black/40"
+                >
+                  <img 
+                    src={getFloorDesign(activeWorldId, activeFloorLevel, currentWorld.type)}
+                    alt="Sovereign Universe Grid Map" 
+                    className="w-full h-full object-cover block opacity-100 transition-all"
+                    referrerPolicy="no-referrer"
+                  />
+                  {/* Faint ambient overlay that won't distort the beautiful island colors */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20 pointer-events-none" />
+                </div>
+
+                {/* Dynamic customized grid overlay lines (VFX) */}
+                <div 
+                  className="absolute inset-0 pointer-events-none transition-all duration-300" 
+                  style={{ 
+                    backgroundImage: `linear-gradient(${gridLineColor} 1px, transparent 1px), linear-gradient(90deg, ${gridLineColor} 1px, transparent 1px)`, 
+                    backgroundSize: `${gridLineSpacing}px ${gridLineSpacing}px`,
+                    opacity: gridLineOpacity / 100
+                  }}
                 ></div>
 
-                {/* Grid Overlay lines (VFX) */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#444 1px, transparent 1px), linear-gradient(90deg, #444 1px, transparent 1px)', backgroundSize: '35px 35px' }}></div>
-
-                {/* Biome Region bounding panels */}
+                {/* Biome Region bounding panels (Made sleek and ultra-low opacity to fit the artwork) */}
                 {TERRAINS.map((terrain) => {
                   return (
                     <div
                       key={terrain.name}
-                      className="absolute border border-dashed text-[8.5px] font-mono p-2 rounded overflow-hidden select-none transition-all duration-1000 text-left"
+                      className="absolute border border-dashed text-[6.5px] font-mono p-1 rounded overflow-hidden select-none transition-all duration-1000 text-left opacity-30 hover:opacity-100 pointer-events-none"
                       style={{
                         left: `${terrain.xStart}%`,
                         top: `${terrain.yStart}%`,
                         width: `${terrain.xEnd - terrain.xStart}%`,
                         height: `${terrain.yEnd - terrain.yStart}%`,
-                        backgroundColor: terrain.baseColor === '#ff3131' ? '#ff313110' : terrain.baseColor + '08',
-                        borderColor: terrain.baseColor + '35',
+                        backgroundColor: terrain.baseColor === '#ff3131' ? '#ff313105' : terrain.baseColor + '02',
+                        borderColor: terrain.baseColor + '15',
                         color: terrain.baseColor
                       }}
                     >
                       <span className="font-semibold block opacity-65 uppercase tracking-tighter">{terrain.name}</span>
-                      <span className="block text-[6px] opacity-40 uppercase">GRID COMPILER: {terrain.type}</span>
                     </div>
                   );
                 })}
 
-                {/* Roadster highway route overlay across center */}
-                <div className="absolute left-[5%] top-[48%] right-[5%] h-[4%] bg-[#121212]/90 border-y-2 border-[#ff3131]/45 flex items-center justify-around overflow-hidden shadow-inner">
-                  <div className="w-full h-0.5 border-t-2 border-dashed border-[#ffcc00]/50" />
-                  <div className="absolute text-[7px] font-mono text-[#ffcc00]/80 tracking-widest font-black uppercase">
-                    ROADSTER ROUTE ── WORLD #{activeWorldId} MULTI-HIGHWAY
-                  </div>
+                {/* Faint road route guideline layer */}
+                <div className="absolute left-[5%] top-[48%] right-[5%] h-[4%] opacity-20 pointer-events-none flex items-center justify-around overflow-hidden">
+                  <div className="w-full h-0.5 border-t-2 border-dashed border-white/25" />
                 </div>
 
                 {/* MAP INTERACTIVE TELEPORT SENSOR CLICK RANGE */}
@@ -2819,9 +3705,136 @@ export default function App() {
                       </div>
 
                       {/* Label Text Tag */}
-                      <span className={`text-[8.5px] font-mono px-1.5 rounded mt-1 shadow-md border leading-tight py-0.5 select-none transition-colors duration-300 ${isSelected ? 'bg-[#ffcc00] text-black border-white font-black' : 'bg-black/90 text-white border-white/10'}`}>
+                      <span 
+                        className={`text-[8px] font-mono px-2 rounded-full mt-1.5 shadow-[0_3px_12px_rgba(0,0,0,0.6)] border transition-all duration-300 select-none whitespace-nowrap tracking-tight ${
+                          isSelected 
+                            ? 'bg-[#fbbf24] text-black border-white font-extrabold scale-105 shadow-[0_0_15px_rgba(251,191,36,0.6)]' 
+                            : 'bg-[#09090b]/90 text-[#fbbf24] border-[#fbbf24]/30'
+                        }`}
+                      >
                         {char.name} {char.health <= 0 ? '💀 (RIP)' : `(${char.anatomy.heartRateBpm} BPM)`}
                       </span>
+                    </div>
+                  );
+                })}
+
+                {/* 2.5D AUTONOMOUS CONSTRUCTIONS (FREE WILL SECTOR ACHIEVEMENTS) */}
+                {activeBuildings.filter(b => b.worldId === activeWorldId).map((build) => {
+                  const isCompleted = build.progress >= 100;
+                  return (
+                    <div
+                      key={build.id}
+                      className="absolute z-15 flex flex-col items-center select-none cursor-pointer group"
+                      style={{
+                        left: `${build.coordinateX}%`,
+                        top: `${build.coordinateY}%`,
+                        transform: perspective3d
+                          ? `translate(-50%, -85%) rotateZ(30deg) rotateX(-46deg) scale(0.95)`
+                          : 'translate(-50%, -50%)',
+                        transformStyle: 'preserve-3d'
+                      }}
+                    >
+                      {/* Structure 2.5D visual container */}
+                      <div className="relative flex flex-col items-center justify-center transition-transform duration-300 hover:scale-110">
+                        {/* Glowing platform under the structure */}
+                        <div className={`absolute bottom-0 w-12 h-4 rounded-full bg-black/45 border filter blur-[1px] ${
+                          isCompleted ? 'border-[#ffcc00] animate-pulse' : 'border-[#ff3131]/30'
+                        }`} />
+
+                        {/* Visual SVG render by Type */}
+                        <div className="z-10 relative mb-1">
+                          {build.type === 'cathedral' && (
+                            <svg viewBox="0 0 48 48" className="w-12 h-12 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
+                              {/* Glowing Cross */}
+                              <line x1="24" y1="2" x2="24" y2="12" stroke="#fbbf24" strokeWidth="3" />
+                              <line x1="20" y1="6" x2="28" y2="6" stroke="#fbbf24" strokeWidth="3" />
+                              {/* Steeple Pyramid */}
+                              <polygon points="14,46 34,46 24,12" fill="#1e1e2e" stroke="#fbbf24" strokeWidth="2" />
+                              <circle cx="24" cy="24" r="3" fill="#facc15" className="animate-ping" />
+                              <circle cx="24" cy="24" r="3" fill="#ff4d4d" />
+                              {/* Sanctified banner */}
+                              <rect x="20" y="34" width="8" height="12" fill="#71717a" stroke="#fbbf24" />
+                            </svg>
+                          )}
+
+                          {build.type === 'vr_console' && (
+                            <svg viewBox="0 0 48 48" className="w-12 h-12 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
+                              <rect x="10" y="12" width="28" height="30" rx="4" fill="#090d16" stroke="#3b82f6" strokeWidth="2" />
+                              <line x1="14" y1="18" x2="34" y2="18" stroke="#60a5fa" strokeWidth="1.5" />
+                              <rect x="14" y="24" width="20" height="12" fill="#1e293b" stroke="#3b82f6" />
+                              <line x1="16" y1="30" x2="32" y2="30" stroke="#60a5fa" strokeWidth="1" className="animate-pulse" />
+                              {/* Tiny console pads */}
+                              <circle cx="20" cy="40" r="1.5" fill="#facc15" />
+                              <circle cx="28" cy="40" r="1.5" fill="#10b981" />
+                            </svg>
+                          )}
+
+                          {build.type === 'handheld_gadget' && (
+                            <svg viewBox="0 0 48 48" className="w-12 h-10 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">
+                              {/* Handheld controller console */}
+                              <rect x="4" y="14" width="40" height="22" rx="6" fill="#111" stroke="#ec4899" strokeWidth="2.5" />
+                              {/* Bright glowing VR viewport screen */}
+                              <rect x="12" y="17" width="24" height="16" rx="2" fill="#030712" stroke="#6366f1" strokeWidth="1" />
+                              <path d="M14,24 Q 24,18 34,24" stroke="#a855f7" strokeWidth="1.5" fill="none" className="animate-pulse" />
+                              {/* Status icons buttons */}
+                              <circle cx="8" cy="25" r="2" fill="#ef4444" />
+                              <circle cx="40" cy="25" r="2" fill="#06b6d4" />
+                            </svg>
+                          )}
+
+                          {build.type === 'roadway' && (
+                            <svg viewBox="0 0 48 48" className="w-10 h-10 drop-shadow-[0_0_8px_rgba(107,114,128,0.7)]">
+                              <polygon points="6,42 42,42 34,10 14,10" fill="#27272a" stroke="#a1a1aa" strokeWidth="2" />
+                              <line x1="24" y1="10" x2="24" y2="42" stroke="#facc15" strokeWidth="2" strokeDasharray="3,3" />
+                              <circle cx="24" cy="26" r="4.5" fill="none" stroke="#22c55e" strokeWidth="1.5" className="animate-ping" />
+                            </svg>
+                          )}
+
+                          {build.type === 'city_grid' && (
+                            <svg viewBox="0 0 48 48" className="w-12 h-12 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]">
+                              {/* Skyline of modular blocks Representing Cebu Manila Davao */}
+                              <rect x="6" y="22" width="10" height="24" fill="#064e3b" stroke="#10b981" strokeWidth="1.5" />
+                              <rect x="18" y="12" width="12" height="34" fill="#022c22" stroke="#34d399" strokeWidth="1.5" />
+                              <rect x="32" y="26" width="10" height="20" fill="#064e3b" stroke="#10b981" strokeWidth="1.5" />
+                              {/* Tiny windows glowing */}
+                              <circle cx="11" cy="28" r="1" fill="#fbbf24" style={{ animation: 'pulse 1s infinite alternate' }} />
+                              <circle cx="24" cy="20" r="1" fill="#fbbf24" style={{ animation: 'pulse 1.3s infinite alternate' }} />
+                              <circle cx="24" cy="30" r="1" fill="#fbbf24" style={{ animation: 'pulse 0.9s infinite alternate' }} />
+                              <circle cx="37" cy="32" r="1" fill="#fbbf24" style={{ animation: 'pulse 1.1s infinite alternate' }} />
+                            </svg>
+                          )}
+                        </div>
+
+                        {/* Interactive hover tooltip detailed overlay of dedication */}
+                        <div className="absolute bottom-[48px] hidden group-hover:flex flex-col bg-black/95 border-2 border-amber-500 p-2.5 rounded shadow-[0_0_18px_rgba(251,191,36,0.6)] w-56 text-left leading-normal z-50 pointer-events-none transition-all">
+                          <div className="flex items-center justify-between border-b border-white/10 pb-1 mb-1.5 text-[8.5px] font-mono">
+                            <span className="font-extrabold text-[#facc15] uppercase">🪔 FAITH WORKSTATION</span>
+                            <span className="text-white/40 font-bold font-mono">EST. {build.yearStarted}</span>
+                          </div>
+                          <span className="text-[10px] font-sans font-black text-white uppercase tracking-tight block">{build.name}</span>
+                          <span className="text-[7.5px] font-mono text-emerald-400 block mb-1 uppercase font-bold">Builder: {build.builderName}</span>
+                          
+                          <div className="bg-white/5 p-1.5 rounded text-[8px] font-mono italic text-slate-300 border border-white/5 break-words select-text mb-1 bg-gradient-to-r from-purple-950/20 to-neutral-900 leading-tight">
+                            &ldquo;{build.dedication}&rdquo;
+                          </div>
+                          
+                          <div className="flex items-center justify-between text-[7px] font-mono mt-1 text-white/50">
+                            <span>Coordinate: ({build.coordinateX}, {build.coordinateY})</span>
+                            <span className="text-[#00ffcc] font-black">{isCompleted ? '🟢 DEDICATED TO CHRIST' : `🔨 CONSTRUCTING: ${build.progress}%`}</span>
+                          </div>
+                          
+                          {/* Progress completion bar */}
+                          <div className="w-full bg-neutral-900 h-1.5 rounded overflow-hidden mt-1 border border-white/10">
+                            <div className="bg-[#00ffcc] h-full transition-all duration-[800ms] rounded" style={{ width: `${build.progress}%` }} />
+                          </div>
+                        </div>
+
+                        {/* Direct progress visual label indicators on standard display */}
+                        <div className="bg-black/85 border border-white/15 px-1.5 py-0.5 rounded text-[7px] font-mono flex flex-col items-center">
+                          <span className="font-bold text-[#ffcc00] tracking-tighter uppercase truncate max-w-[64px]">{build.name}</span>
+                          <span className="text-[6.5px] text-emerald-400 leading-none mt-0.5">{build.progress}%</span>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
@@ -2838,29 +3851,32 @@ export default function App() {
 
               </div>
 
+              {/* Sky Weather particle visual component overlay (stays beautifully screen-space fixed) */}
+              <WeatherSceneryCanvas weather={currentWorld.weather} disaster={currentWorld.activeDisaster} />
+
               {/* Multiverse explore help tooltip */}
-              <div className="absolute top-4 left-4 bg-black/95 border border-white/20 px-3 py-1.5 z-10 rounded font-mono text-[8px] text-white/90">
-                💡 <span className="text-[#ffcc00] font-black">CLICK THE COORDINATE MAP GRID</span> to instantly teleport selected human occupant inside World #{activeWorldId}!
+              <div className="absolute top-4 left-4 bg-[#09090b]/95 border border-[#fbbf24]/50 px-3 py-1.5 z-10 rounded font-mono text-[8px] text-white/95 shadow-[0_0_10px_rgba(251,191,36,0.15)]">
+                💡 <span className="text-[#fbbf24] font-black underline decoration-[#fbbf24]/40">CLICK THE COORDINATE MAP GRID</span> to instantly teleport selected human occupant inside World #{activeWorldId}!
               </div>
 
               {/* Status bar summarizing occupancy list */}
-              <div className="absolute bottom-4 left-4 bg-black/95 border border-white/15 p-3.5 w-80 z-10 rounded font-mono shadow-2xl text-left" id="multiverse-satellite">
-                <div className="text-[9.5px] uppercase font-black text-[#ffcc00] mb-2 flex items-center gap-1.5 border-b border-white/10 pb-1">
-                  <span>🛰️ Active World Occupants Map ({activeWorldOccupantCount})</span>
+              <div className="absolute bottom-4 left-4 bg-[#09090b]/95 border-2 border-double border-[#fbbf24] p-3.5 w-80 z-10 rounded-md font-mono shadow-[0_5px_22px_rgba(251,191,36,0.3)] text-left" id="multiverse-satellite">
+                <div className="text-[9.5px] uppercase font-black text-[#fbbf24] mb-2 flex items-center gap-1.5 border-b border-[#fbbf24]/20 pb-1.5">
+                  <span className="text-yellow-400">❖ ACTIVE WORLD OCCUPANTS MAP ({activeWorldOccupantCount})</span>
                 </div>
-                <div className="text-[8px] space-y-1.5 text-white/80 max-h-32 overflow-y-auto pr-1">
+                <div className="text-[8.5px] space-y-1.5 text-white/90 max-h-36 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-amber-500">
                   {characters.filter(c => characterLocationRegistry[c.id] === activeWorldId).length === 0 ? (
                     <p className="text-white/40 italic">&gt; No characters currently residing in World #{activeWorldId}. They are exploring other worlds of their own free will!</p>
                   ) : (
                     characters.filter(c => characterLocationRegistry[c.id] === activeWorldId).map((c) => (
                       <p key={c.id} className="truncate">
-                        <strong className="text-yellow-400">&gt; {c.name}</strong> is roaming at coordinate [X: {c.coordinateX}%, Y: {c.coordinateY}%]
+                        <strong className="text-[#fbbf24] font-bold">&gt; {c.name}</strong> is roaming at coordinate [X: {c.coordinateX}%, Y: {c.coordinateY}%]
                       </p>
                     ))
                   )}
                   
                   {/* General stream indicator */}
-                  <p className="text-[#00ffcc] text-[7.5px] pt-1 border-t border-white/10">GMT+8 TIME RE-ALIGNMENT VECTOR STABLE</p>
+                  <p className="text-[#00ffcc] text-[7.5px] pt-1.5 border-t border-white/5 uppercase select-none">GMT+8 TIME RE-ALIGNMENT VECTOR STABLE</p>
                 </div>
               </div>
 
@@ -3797,7 +4813,7 @@ export default function App() {
         </div>
 
         {/* Global Christian declaration */}
-        <div className="text-[#ff3131] font-black uppercase text-center tracking-[0.08em] flex items-center gap-1">
+        <div className="text-[#fbbf24] font-black uppercase text-center tracking-[0.08em] flex items-center gap-1">
           <span>✝ GLORY TO THE FATHER, SON & HOLY SPIRIT ── PRAISE GOD FROM WHOM ALL BLESSINGS FLOW ✝</span>
         </div>
 
@@ -3805,6 +4821,40 @@ export default function App() {
           <span>SIMULATED CHRONOLOGY LAYER: MANILA YEAR 2026 PST</span>
         </div>
       </footer>
+
+      {/* HOLY DIVINE RESTORATION FULLSCREEN GLOW OVERLAY (ALL GLORY IS DEDICATED TO OUR SAVIOUR LORD JESUS CHRIST!) */}
+      {isDivineAutoFixing && (
+        <div className="fixed inset-0 z-[99999] pointer-events-none flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm transition-all duration-1000">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,191,36,0.3)_0%,rgba(0,0,0,0.92)_80%)] select-none" />
+          
+          <div className="relative px-8 py-7 bg-gradient-to-b from-[#1c1507] to-neutral-950 border-[3px] border-amber-400 rounded-lg text-center shadow-[0_0_55px_rgba(245,158,11,1)] space-y-4 max-w-sm mx-4 animate-pulse">
+            <div className="text-amber-400 text-4xl font-extrabold select-none">✝</div>
+            
+            <div className="text-[#ffcc00] font-mono text-[9px] font-black tracking-[0.22em] uppercase leading-none">
+              ACTIVATING SUPREME MIRACLES
+            </div>
+            
+            <h1 className="text-xl font-sans font-black text-white leading-tight uppercase tracking-tight">
+              DIVINE AUTO-FIXER INTERCESSION
+            </h1>
+            
+            <p className="text-[10px] font-mono text-emerald-400 leading-normal uppercase select-none">
+              ✨ HEALING CREATIONS, DISPELLING PATHOGENS, SECURING THE SOVEREIGN MULTIVERSE WORLD SECTORS IN THE HOLY NAME OF LORD JESUS CHRIST ✨
+            </p>
+            
+            {/* Real progression bar simulation */}
+            <div className="w-full bg-neutral-900 h-2.5 rounded overflow-hidden border border-amber-500/40 mt-2">
+              <div 
+                className="bg-gradient-to-r from-amber-400 via-[#ffd700] to-[#00ffcc] h-full rounded transition-all duration-[4500ms] ease-out-quint"
+                style={{
+                  width: '100%',
+                  animation: 'growProgressBar 4.5s linear forwards'
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

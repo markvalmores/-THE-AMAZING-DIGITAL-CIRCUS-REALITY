@@ -281,6 +281,86 @@ Make the log majestic, highly stylized, in line with TADC surreal vibe combined 
   }
 });
 
+// AI Multiverse Floor Generator API
+app.post("/api/generate-floor-design", async (req, res) => {
+  const { worldId, floorLevel, terrainType, promptText } = req.body;
+  
+  const fullPrompt = `Isometric blueprint landscape illustration of a digital multiverse floor plan.
+World Sector ID: #${worldId}
+Floor level: ${floorLevel}
+Biomap terrain type: ${terrainType}
+User details guidance: ${promptText || "A mysterious high-tech neon digital grid, cosmic aesthetics, game illustration."}
+Style: game asset map tile, clean vector perspective guidelines, high resolution, glowing colors.`;
+
+  // Failsafe procedural unsplash map references
+  const getSubtleThematicKeyword = (level: string, terrain: string, userPrompt: string) => {
+    const combined = `${userPrompt} ${terrain} ${level} matrix mapping`.toLowerCase();
+    if (combined.includes("fire") || combined.includes("lava") || combined.includes("red")) {
+      return "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80"; // Red/Orange grid hue
+    }
+    if (combined.includes("water") || combined.includes("blue") || combined.includes("sea")) {
+      return "https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=1200&q=80"; // Blue topo deep
+    }
+    if (combined.includes("forest") || combined.includes("green") || combined.includes("jungle")) {
+      return "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80"; // Emerald green
+    }
+    // General high-tech crystalline cyberwave
+    return "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80";
+  };
+
+  if (!ai) {
+    const mockImage = getSubtleThematicKeyword(floorLevel, terrainType, promptText || "");
+    return res.json({
+      success: true,
+      imageUrl: mockImage,
+      narrative: `[AI ARCHITECT LOCAL OFFLINE] Generated procedural floor blueprint using localized image mapping for Sector #${worldId} (${floorLevel} level - ${terrainType}). Prompt recognized: "${promptText || 'Optimal default simulation'}"`
+    });
+  }
+
+  try {
+    // Generate content using the recommended image model and configuration
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-image",
+      contents: fullPrompt,
+      config: {
+        imageConfig: {
+          aspectRatio: "1:1"
+        }
+      }
+    });
+
+    let base64Data = "";
+    if (response.candidates?.[0]?.content?.parts) {
+      for (const part of response.candidates[0].content.parts) {
+        if (part.inlineData) {
+          base64Data = part.inlineData.data;
+          break;
+        }
+      }
+    }
+
+    if (base64Data) {
+      const generatedUrl = `data:image/png;base64,${base64Data}`;
+      res.json({
+        success: true,
+        imageUrl: generatedUrl,
+        promptUsed: fullPrompt,
+        narrative: `[AI ARCHITECT ONLINE] Celestial floor blueprint synthesized successfully for World #${worldId} (${floorLevel} floor) utilizing Gemini GenAI nodes.`
+      });
+    } else {
+      throw new Error("Empty image payload from Gemini SDK response candidates.");
+    }
+  } catch (error: any) {
+    console.error("Gemini image generation failover triggered:", error);
+    const mockImage = getSubtleThematicKeyword(floorLevel, terrainType, promptText || "");
+    res.json({
+      success: true,
+      imageUrl: mockImage,
+      narrative: `[AI ARCHITECT WARNING] Gemini rate-limiter or paid-key bypass detected. Reverted to a high-fidelity visual themed design backup matching: "${promptText || 'Vector biome'}"`
+    });
+  }
+});
+
 // Setup Vite or static serving
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
